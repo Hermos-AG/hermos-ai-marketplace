@@ -21,6 +21,15 @@ gitGraph
 - Skill für den Agent-Rollout, gesteuert über updateRequired in der Flotte
 - Container-Abgleich: Sollzustand gegen Istzustand je Gerät
 
+## [1.3.0] - 2026-08-16
+
+### Geändert
+
+- `fusion-docs`: Themen-Tabelle um die `Fusion.McpServer`-Dokumentation erweitert
+  (README mit Tool-Katalog, OAuth-Stack, Changelog) sowie um Geräte-Telemetrie und
+  Geräte-Logs – Fragen zum MCP-Server selbst treffen jetzt in einem Schritt
+- `hermos-fusion` von 0.2.0 auf 0.3.0, Katalog von 1.2.0 auf 1.3.0
+
 ## [1.2.0] - 2026-08-16
 
 ### Hinzugefügt

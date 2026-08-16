@@ -21,6 +21,15 @@ gitGraph
 - Agent rollout skill, driven by updateRequired across the fleet
 - Container drift check: desired state versus live state per device
 
+## [1.3.0] - 2026-08-16
+
+### Changed
+
+- `fusion-docs`: topic table extended with the `Fusion.McpServer` documentation
+  (README with tool catalogue, OAuth stack, changelog) plus device telemetry and
+  device logs, so questions about the MCP server itself resolve in one step
+- `hermos-fusion` 0.2.0 to 0.3.0, catalog 1.2.0 to 1.3.0
+
 ## [1.2.0] - 2026-08-16
 
 ### Added

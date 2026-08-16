@@ -2,6 +2,12 @@
 
 > Deutsche Fassung: [RELEASE_NOTES_de.md](RELEASE_NOTES_de.md)
 
+## 1.3.0 — 16 August 2026
+
+Small, targeted: the `fusion-docs` skill now knows where the MCP server's own
+documentation lives — tool catalogue, OAuth stack, release history — plus the telemetry
+and device-log pages. `hermos-fusion` 0.3.0.
+
 ## 1.2.0 — 16 August 2026
 
 Everything needed to make the catalog the default for the whole company, written down.

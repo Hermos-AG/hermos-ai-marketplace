@@ -2,6 +2,12 @@
 
 > English version: [RELEASE_NOTES.md](RELEASE_NOTES.md)
 
+## 1.3.0 — 16. August 2026
+
+Klein und gezielt: der Skill `fusion-docs` kennt jetzt die Fundstellen der
+MCP-Server-eigenen Dokumentation – Tool-Katalog, OAuth-Stack, Release-Historie – sowie
+die Seiten zu Telemetrie und Geräte-Logs. `hermos-fusion` 0.3.0.
+
 ## 1.2.0 — 16. August 2026
 
 Alles aufgeschrieben, was nötig ist, damit der Katalog firmenweit der Standard wird.

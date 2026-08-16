@@ -160,6 +160,7 @@ als neue Version.
 
 ## Dokumentation
 
+- **[Deployment](docs/DEPLOYMENT_de.md)** — für alle ausrollen, standardmässig installiert
 - Marktplätze: https://code.claude.com/docs/de/plugin-marketplaces
 - Plugins in der Claude-App: https://support.claude.com/de/articles/13837440-plugins-in-claude-verwenden
 - Organisationsverwaltung: https://support.claude.com/de/articles/13837433-verwalten-sie-cowork-plugins-fur-ihre-organisation

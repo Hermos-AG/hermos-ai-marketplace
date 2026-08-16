@@ -2,6 +2,40 @@
 
 > Deutsche Fassung: [RELEASE_NOTES_de.md](RELEASE_NOTES_de.md)
 
+## 1.2.0 — 16 August 2026
+
+Everything needed to make the catalog the default for the whole company, written down.
+
+### Rollout routes
+
+```mermaid
+flowchart LR
+    A["Where do people work?"] --> B["Claude app, Cowork"]
+    A --> C["Terminal, Claude Code"]
+    B --> D["Organization settings"]
+    C --> E["Managed settings via MDM"]
+    D --> F["Installed automatically"]
+    E --> F
+```
+
+New: [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) and
+[`docs/DEPLOYMENT_de.md`](docs/DEPLOYMENT_de.md), with paste-ready payloads for
+`extraKnownMarketplaces`, `enabledPlugins` and `strictKnownMarketplaces`, and the verified
+deployment location for every platform.
+
+### Two things that catch people out
+
+Project settings do **not** install a plugin for others. They register the marketplace
+after workspace trust, nothing more — each user still installs. Only organization settings
+and managed settings actually put the plugin on someone else's machine.
+
+The old Windows path `C:\ProgramData\ClaudeCode\managed-settings.json` stopped working in
+v2.1.75. Anything deployed there has to move to `C:\Program Files\ClaudeCode\`.
+
+### Versions
+
+Catalog 1.2.0. `hermos-fusion` stays at 0.2.0 — documentation only, no plugin change, so
+nobody gets a pointless update.
 ## 1.1.0 — 16 August 2026
 
 The scaffold is gone. `hermos-fusion` now works against the real Fusion tool set.

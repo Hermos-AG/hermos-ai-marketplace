@@ -156,6 +156,7 @@ release. Leave `version` out entirely and every commit counts as a new version i
 
 ## Docs
 
+- **[Deployment](docs/DEPLOYMENT.md)** — roll this out for everyone, by default
 - Marketplaces: https://code.claude.com/docs/en/plugin-marketplaces
 - Plugins in the Claude app: https://support.claude.com/en/articles/13837440-use-plugins-in-claude
 - Organization administration: https://support.claude.com/en/articles/13837433-manage-plugins-for-your-organization

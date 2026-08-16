@@ -21,6 +21,25 @@ gitGraph
 - Agent rollout skill, driven by updateRequired across the fleet
 - Container drift check: desired state versus live state per device
 
+## [1.2.0] - 2026-08-16
+
+### Added
+
+- `docs/DEPLOYMENT.md` and `docs/DEPLOYMENT_de.md` — how to roll the catalog out so
+  `hermos-fusion` is installed and enabled for everyone by default. Covers all three
+  routes: organization settings for the Claude app and Cowork, managed settings via MDM
+  for Claude Code, and project settings as a stopgap.
+- Ready-to-paste payloads for `extraKnownMarketplaces`, `enabledPlugins` and
+  `strictKnownMarketplaces`
+- Verified deployment locations per platform, including the note that the old Windows path
+  `C:\ProgramData\ClaudeCode\` stopped working in v2.1.75
+
+### Changed
+
+- Catalog version 1.1.0 to 1.2.0. `hermos-fusion` stays at 0.2.0 — no plugin content
+  changed, only documentation.
+- Both READMEs link the deployment guide
+
 ## [1.1.0] - 2026-08-16
 
 Placeholders replaced with the actual Fusion tool set, queried live from the MCP server.

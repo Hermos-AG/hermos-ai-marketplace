@@ -21,6 +21,14 @@ gitGraph
 - Agent rollout skill, driven by updateRequired across the fleet
 - Container drift check: desired state versus live state per device
 
+## [1.3.1] - 2026-08-16
+
+### Changed
+
+- `fusion-docs`: row for the new `Fusion.McpServer/docs/ARCHITECTURE.md` (request path,
+  auth pipeline, how to add a tool). The page enters the docs corpus with the next
+  server image build. `hermos-fusion` 0.3.1.
+
 ## [1.3.0] - 2026-08-16
 
 ### Changed

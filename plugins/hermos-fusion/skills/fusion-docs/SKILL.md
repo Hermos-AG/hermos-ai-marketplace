@@ -38,6 +38,7 @@ deutschen Frage die `_de`-Fassung lesen, sonst das Original. Nicht beide laden.
 | MCP-Client anbinden | `Fusion.McpServer/docs/MCP_CLIENT_SETUP.md` |
 | MCP-Server: Überblick, Tool-Katalog, Betrieb | `Fusion.McpServer/README.md` |
 | MCP-Server: OAuth-Stack, Token-Tausch, PATs | `Fusion.McpServer/docs/OAUTH.md` |
+| MCP-Server: Architektur, Anfrageweg, neues Tool anlegen | `Fusion.McpServer/docs/ARCHITECTURE.md` (ab nächstem Server-Build) |
 | MCP-Server: was sich geändert hat | `Fusion.McpServer/CHANGELOG.md`, `RELEASE_NOTES.md` |
 | Telemetrie-API und Metrik-Schlüssel | `Fusion.API/docs/DEVICE_TELEMETRY.md` |
 | Geräte-Logs | `Fusion.API/docs/DEVICE_LOGS.md` |

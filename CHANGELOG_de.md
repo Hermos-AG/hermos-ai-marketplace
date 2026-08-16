@@ -21,6 +21,14 @@ gitGraph
 - Skill für den Agent-Rollout, gesteuert über updateRequired in der Flotte
 - Container-Abgleich: Sollzustand gegen Istzustand je Gerät
 
+## [1.3.1] - 2026-08-16
+
+### Geändert
+
+- `fusion-docs`: Zeile für das neue `Fusion.McpServer/docs/ARCHITECTURE.md` (Anfrageweg,
+  Auth-Pipeline, neues Tool anlegen). Die Seite gelangt mit dem nächsten
+  Server-Image-Build in den Korpus. `hermos-fusion` 0.3.1.
+
 ## [1.3.0] - 2026-08-16
 
 ### Geändert

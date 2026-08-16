@@ -1,0 +1,14 @@
+# Zeilenenden einheitlich als LF im Repository speichern.
+# Windows-Arbeitskopien bleiben trotzdem benutzbar.
+* text=auto eol=lf
+
+# Markdown und JSON immer als Text behandeln
+*.md    text eol=lf
+*.json  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+
+# Binaeres nicht anfassen
+*.png   binary
+*.jpg   binary
+*.zip   binary

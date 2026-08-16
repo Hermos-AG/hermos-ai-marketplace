@@ -1,0 +1,11 @@
+# Lokales / Werkzeuge
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Nichts Geheimes ins Repo
+*.env
+secrets.*
+**/local.settings.json

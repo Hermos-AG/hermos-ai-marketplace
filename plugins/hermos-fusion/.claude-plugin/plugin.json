@@ -1,0 +1,11 @@
+{
+  "name": "hermos-fusion",
+  "version": "0.2.0",
+  "description": "Edge-Geräteverwaltung mit HERMOS Fusion: Flottenbericht, Gerätediagnose und Zugriff auf die Fusion-Projektdokumentation",
+  "author": {
+    "name": "HERMOS",
+    "email": "steffen.mueller@hermos.com"
+  },
+  "keywords": ["hermos", "fusion", "mcp", "edge", "iot", "monitoring", "devops"],
+  "license": "UNLICENSED"
+}

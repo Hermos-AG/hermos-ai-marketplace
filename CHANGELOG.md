@@ -12,6 +12,7 @@ gitGraph
     commit id: "marketplace 1.0.0"
     commit id: "scaffold 0.1.0"
     commit id: "real tools 0.2.0"
+    commit id: "HERMOS-local-GPU 0.2.0"
 ```
 
 ## [Unreleased]
@@ -20,6 +21,25 @@ gitGraph
 
 - Agent rollout skill, driven by updateRequired across the fleet
 - Container drift check: desired state versus live state per device
+
+## [1.4.0] - 2026-08-16
+
+### Added
+
+- Plugin `HERMOS-local-GPU` 0.2.0 (project `gpu-mcp`, category `ai-dev`): the developer's
+  own NVIDIA GPU as an MCP server — read-only monitoring (`gpu_get_status`,
+  `gpu_query_metrics`, `gpu_list_processes`), a built-in requirement check
+  (`gpu_check_requirements` and `gpu-mcp.exe --check`: NVIDIA ≥ 8 GB VRAM, configurable
+  via `GPU_MCP_MIN_VRAM_MB`), and controlled GPU job execution (`gpu_run_command`).
+  A single dependency-free Go binary over stdio; source, tests and bilingual docs ship
+  inside `plugins/gpu-mcp/`.
+
+### Note
+
+- The catalog name `HERMOS-local-GPU` is deliberately not kebab-case — closest possible
+  to the display name "HERMOS - local GPU" (plugin names cannot contain spaces).
+  Claude Code accepts it; should the Claude.ai organization sync ever reject it,
+  rename to `hermos-local-gpu` in `plugin.json` and `marketplace.json`.
 
 ## [1.3.1] - 2026-08-16
 

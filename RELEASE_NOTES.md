@@ -2,6 +2,33 @@
 
 > Deutsche Fassung: [RELEASE_NOTES_de.md](RELEASE_NOTES_de.md)
 
+## 1.4.0 — 16 August 2026
+
+Second plugin in the catalog: `HERMOS-local-GPU` puts the developer's own NVIDIA
+GPU at Claude's fingertips — monitoring, CUDA processes, and controlled GPU jobs,
+all running locally through a single dependency-free binary (project `gpu-mcp`).
+
+```mermaid
+graph LR
+    P["HERMOS-local-GPU 0.2.0"] --> A["gpu_get_status / gpu_query_metrics"]
+    P --> B["gpu_list_processes"]
+    P --> C["gpu_check_requirements"]
+    P --> D["gpu_run_command"]
+    C --> C1["NVIDIA ≥ 8 GB VRAM?"]
+    C1 -->|"RESULT: MET"| E["GPU jobs allowed"]
+    C1 -->|"RESULT: NOT MET"| F["monitoring only"]
+```
+
+- **Runs on the developer's machine** — the plugin ships `gpu-mcp.exe` and registers
+  it automatically; nothing to configure. Cloud Cowork sessions reach the GPU through
+  the desktop app's device bridge.
+- **"Sufficient GPU" is checked, not assumed** — NVIDIA with ≥ 8 GB VRAM by default
+  (`GPU_MCP_MIN_VRAM_MB`, `0` = driver check only). Below the minimum, monitoring
+  still works; the check says `RESULT: NOT MET` and GPU jobs stay off.
+- **Install:** `/plugin install HERMOS-local-GPU@hermos` — then ask Claude to run
+  `gpu_check_requirements`, or run `gpu-mcp.exe --check` in a terminal.
+- Catalog 1.3.1 → 1.4.0. `hermos-fusion` unchanged at 0.3.1.
+
 ## 1.3.0 — 16 August 2026
 
 Small, targeted: the `fusion-docs` skill now knows where the MCP server's own

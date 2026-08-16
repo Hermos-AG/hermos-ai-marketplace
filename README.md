@@ -27,6 +27,24 @@ All skills are **read-only**. Fusion also exposes destructive tools — deleting
 container actions, aborting transfers. Those require explicit confirmation.
 `run_sql_query` spans all tenants and is excluded from device questions.
 
+**`HERMOS-local-GPU` 0.2.0** — the developer's own NVIDIA GPU as an MCP server
+(project `gpu-mcp`: a single dependency-free Go binary, JSON-RPC over stdio, no
+Python/Node). Runs **locally** on every developer's machine with a sufficient
+GPU — NVIDIA with **≥ 8 GB VRAM** (configurable via `GPU_MCP_MIN_VRAM_MB`); the
+plugin checks this itself.
+
+| Tool | What it does |
+|------|--------------|
+| `gpu_get_status` | Full `nvidia-smi` report: driver, CUDA, utilization, memory, temperature, all GPU processes. |
+| `gpu_query_metrics` | Compact CSV metrics for monitoring. |
+| `gpu_list_processes` | CUDA compute processes (pid, name, GPU memory). |
+| `gpu_check_requirements` | Verifies the GPU requirement — report ends in `RESULT: MET` / `NOT MET`; also available as `gpu-mcp.exe --check`. |
+| `gpu_run_command` | Runs a shell command, e.g. to start GPU jobs — **executes commands**, approval prompts stay strict. |
+
+The first four tools are read-only. `gpu_run_command` executes arbitrary commands
+with the logged-in user's permissions — details and security notes:
+[`plugins/gpu-mcp/README.md`](plugins/gpu-mcp/README.md).
+
 ## Repository layout
 
 ```mermaid
@@ -43,6 +61,10 @@ graph TD
     FS --> S3["fusion-docs"]
     FK --> K1["fusion-status"]
     FK --> K2["fusion-fleet"]
+    P --> G["gpu-mcp/"]
+    G --> GM[".claude-plugin/plugin.json"]
+    G --> GC[".mcp.json"]
+    G --> GE["gpu-mcp.exe + Go source"]
 ```
 
 | File | Purpose |
@@ -105,7 +127,12 @@ cd D:\DEV\HER\Claude.Catalog
 claude
 /plugin marketplace add .
 /plugin install hermos-fusion@hermos
+/plugin install HERMOS-local-GPU@hermos
 ```
+
+`HERMOS-local-GPU` requires an NVIDIA GPU with ≥ 8 GB VRAM on the installing
+machine — verify after install with the `gpu_check_requirements` tool (or
+`gpu-mcp.exe --check`).
 
 **Personal, from GitHub:** Cowork tab, "Customize" in the sidebar, "Browse plugins",
 "Personal", the "+" button, "Add marketplace from GitHub", then `Hermos-AG/HER-Claude-Catalog`.

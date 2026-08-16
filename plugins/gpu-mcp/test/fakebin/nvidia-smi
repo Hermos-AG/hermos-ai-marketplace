@@ -1,0 +1,16 @@
+#!/bin/sh
+case "$1" in
+  --query-gpu=index,name,driver_version,memory.total)
+    echo "0, NVIDIA GeForce RTX 4080 (FAKE), 560.94, 16376"
+    ;;
+  --query-gpu=*)
+    echo "index, name, driver_version, utilization.gpu [%], utilization.memory [%], memory.used [MiB], memory.total [MiB], temperature.gpu, power.draw [W], power.limit [W], clocks.sm [MHz], fan.speed [%]"
+    echo "0, NVIDIA GeForce RTX 4080 (FAKE), 560.94, 7, 2, 1834, 16376, 41, 55.10, 320.00, 2505, 31"
+    ;;
+  --query-compute-apps=*)
+    echo "pid, process_name, used_gpu_memory [MiB]"
+    ;;
+  *)
+    echo "FAKE nvidia-smi full status output OK"
+    ;;
+esac

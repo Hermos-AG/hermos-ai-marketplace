@@ -1,6 +1,6 @@
 {
   "name": "hermos",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "Interner Plugin-Katalog der HERMOS AG für Claude Cowork und Claude Code",
   "owner": {
     "name": "HERMOS",
@@ -12,12 +12,20 @@
   },
   "plugins": [
     {
-      "name": "hermos-fusion",
+      "name": "HERMOS-Fusion",
       "source": "./plugins/hermos-fusion",
       "description": "Edge-Geräteverwaltung mit HERMOS Fusion: Flottenbericht, Gerätediagnose und Zugriff auf die Fusion-Projektdokumentation",
       "version": "0.3.1",
       "category": "operations",
       "keywords": ["hermos", "fusion", "mcp", "edge", "iot", "monitoring", "devops"]
+    },
+    {
+      "name": "HERMOS-local-GPU",
+      "source": "./plugins/gpu-mcp",
+      "description": "Lokale NVIDIA-GPU-Brücke: GPU-Monitoring und kontrollierte GPU-Jobs auf dem eigenen Entwickler-Rechner über nvidia-smi. Voraussetzung: NVIDIA-GPU mit mindestens 8 GB VRAM (konfigurierbar über GPU_MCP_MIN_VRAM_MB)",
+      "version": "0.2.0",
+      "category": "ai-dev",
+      "keywords": ["hermos", "gpu", "nvidia", "cuda", "mcp", "monitoring", "local", "windows"]
     }
   ]
 }

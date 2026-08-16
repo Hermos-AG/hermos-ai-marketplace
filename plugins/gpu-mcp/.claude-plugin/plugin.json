@@ -1,0 +1,11 @@
+{
+  "name": "HERMOS-local-GPU",
+  "version": "0.2.0",
+  "description": "Lokale NVIDIA-GPU-Brücke: GPU-Monitoring und kontrollierte GPU-Jobs auf dem eigenen Entwickler-Rechner über nvidia-smi. Voraussetzung: NVIDIA-GPU mit mindestens 8 GB VRAM (konfigurierbar über GPU_MCP_MIN_VRAM_MB)",
+  "author": {
+    "name": "HERMOS",
+    "email": "steffen.mueller@hermos.com"
+  },
+  "keywords": ["hermos", "gpu", "nvidia", "cuda", "mcp", "monitoring", "local", "windows"],
+  "license": "UNLICENSED"
+}

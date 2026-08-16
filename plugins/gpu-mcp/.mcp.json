@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "HERMOS-local-GPU": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/gpu-mcp.exe",
+      "env": {
+        "GPU_MCP_MIN_VRAM_MB": "8192"
+      }
+    }
+  }
+}

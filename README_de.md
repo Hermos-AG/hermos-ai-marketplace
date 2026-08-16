@@ -27,6 +27,24 @@ Alle Skills **lesen nur**. Fusion bietet auch zerstörende Werkzeuge – Geräte
 Container-Aktionen, Transfers abbrechen. Die verlangen eine ausdrückliche Bestätigung.
 `run_sql_query` sieht alle Mandanten und ist für Gerätefragen ausgeschlossen.
 
+**`HERMOS-local-GPU` 0.2.0** – die eigene NVIDIA-GPU des Entwicklers als MCP-Server
+(Projekt `gpu-mcp`: ein einzelnes, abhängigkeitsfreies Go-Binary, JSON-RPC über stdio,
+kein Python/Node). Läuft **lokal** auf dem Rechner jedes Entwicklers mit ausreichender
+GPU – NVIDIA mit **≥ 8 GB VRAM** (konfigurierbar über `GPU_MCP_MIN_VRAM_MB`); das
+Plugin prüft das selbst.
+
+| Tool | Wofür |
+|------|-------|
+| `gpu_get_status` | Vollständiger `nvidia-smi`-Bericht: Treiber, CUDA, Auslastung, Speicher, Temperatur, alle GPU-Prozesse. |
+| `gpu_query_metrics` | Kompakte CSV-Metriken fürs Monitoring. |
+| `gpu_list_processes` | CUDA-Compute-Prozesse (PID, Name, GPU-Speicher). |
+| `gpu_check_requirements` | Prüft die GPU-Voraussetzung – Bericht endet mit `RESULT: MET` / `NOT MET`; auch als `gpu-mcp.exe --check`. |
+| `gpu_run_command` | Führt einen Shell-Befehl aus, z. B. um GPU-Jobs zu starten – **führt Befehle aus**, Freigabe-Dialoge bleiben streng. |
+
+Die ersten vier Tools lesen nur. `gpu_run_command` führt beliebige Befehle mit den
+Rechten des angemeldeten Benutzers aus – Details und Sicherheitshinweise:
+[`plugins/gpu-mcp/README_de.md`](plugins/gpu-mcp/README_de.md).
+
 ## Aufbau des Repositorys
 
 ```mermaid
@@ -43,6 +61,10 @@ graph TD
     FS --> S3["fusion-docs"]
     FK --> K1["fusion-status"]
     FK --> K2["fusion-fleet"]
+    P --> G["gpu-mcp/"]
+    G --> GM[".claude-plugin/plugin.json"]
+    G --> GC[".mcp.json"]
+    G --> GE["gpu-mcp.exe + Go-Quellcode"]
 ```
 
 | Datei | Zweck |
@@ -106,7 +128,12 @@ cd D:\DEV\HER\Claude.Catalog
 claude
 /plugin marketplace add .
 /plugin install hermos-fusion@hermos
+/plugin install HERMOS-local-GPU@hermos
 ```
+
+`HERMOS-local-GPU` setzt eine NVIDIA-GPU mit ≥ 8 GB VRAM auf dem installierenden
+Rechner voraus – nach der Installation prüfen mit dem Tool
+`gpu_check_requirements` (oder `gpu-mcp.exe --check`).
 
 **Persönlich, von GitHub:** Reiter Cowork, in der Seitenleiste „Anpassen", dann
 „Plugins durchsuchen", „Persönlich", die Schaltfläche „+", „Marketplace von GitHub

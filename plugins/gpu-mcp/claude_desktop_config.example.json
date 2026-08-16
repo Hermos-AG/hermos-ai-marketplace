@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "HERMOS-local-GPU": {
+      "command": "C:\\Tools\\gpu-mcp\\gpu-mcp.exe"
+    }
+  }
+}

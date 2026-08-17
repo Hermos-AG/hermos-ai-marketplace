@@ -172,6 +172,20 @@ both Cowork and Skills enabled.
 - Skills from a plugin work in Chat, Desktop and Cowork. Hooks and sub-agents run in
   Cowork only.
 
+## Continuous integration
+
+| Workflow | Trigger | What it does |
+|---|---|---|
+| `validate` | push to `main`, every pull request | `scripts/validate_catalog.py`: catalog and plugin manifests, version consistency, bilingual doc pairs, JSON syntax, and whether shipped binaries carry the plugin version. `claude plugin validate .` runs as an informational step. |
+| `refresh-gpu-binaries` | manual (Actions → Run workflow) | Rebuilds `plugins/gpu-mcp` binaries (windows/amd64 + linux/amd64) from the committed Go source, smoke-tests the Linux build against the fake `nvidia-smi`, syncs versions, opens a pull request. |
+
+Locally, `pwsh scripts/sync-gpu-mcp.ps1` copies the release state out of the source repo
+`Hermos-AG/HER-gpu-mcp`, validates it and opens the pull request. The source repo has its own
+`build` workflow (vet, cross-compile, smoke test) and publishes binaries as a GitHub release
+on a `v*` tag.
+
+Actions minutes: the organisation is on the GitHub Free plan, which includes 2,000 minutes
+per month for private repositories. A catalog validation takes well under a minute.
 ## Releasing a change
 
 ```mermaid

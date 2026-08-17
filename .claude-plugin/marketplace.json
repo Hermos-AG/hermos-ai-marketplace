@@ -1,6 +1,6 @@
 {
   "name": "hermos",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Interner Plugin-Katalog der HERMOS AG für Claude Cowork und Claude Code",
   "owner": {
     "name": "HERMOS",
@@ -12,7 +12,7 @@
   },
   "plugins": [
     {
-      "name": "HERMOS-Fusion",
+      "name": "hermos-fusion",
       "source": "./plugins/hermos-fusion",
       "description": "Edge-Geräteverwaltung mit HERMOS Fusion: Flottenbericht, Gerätediagnose und Zugriff auf die Fusion-Projektdokumentation",
       "version": "0.3.1",

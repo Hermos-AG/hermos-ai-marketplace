@@ -176,6 +176,20 @@ Owner-Rechten voraus, ausserdem müssen Cowork und Skills aktiviert sein.
 - Skills eines Plugins wirken in Chat, Desktop und Cowork. Hooks und Sub-Agenten laufen
   nur in Cowork.
 
+## Continuous Integration
+
+| Workflow | Auslöser | Was er tut |
+|---|---|---|
+| `validate` | Push auf `main`, jeder Pull Request | `scripts/validate_catalog.py`: Katalog- und Plugin-Manifeste, Versionskonsistenz, zweisprachige Doku-Paare, JSON-Syntax und ob die mitgelieferten Binaries die Plugin-Version tragen. `claude plugin validate .` läuft informativ mit. |
+| `refresh-gpu-binaries` | manuell (Actions → Run workflow) | Baut die Binaries in `plugins/gpu-mcp` (windows/amd64 + linux/amd64) aus dem eingecheckten Go-Quellcode neu, testet den Linux-Build gegen das Fake-`nvidia-smi`, zieht die Versionen nach, öffnet einen Pull Request. |
+
+Lokal kopiert `pwsh scripts/sync-gpu-mcp.ps1` den Release-Stand aus dem Quell-Repo
+`Hermos-AG/HER-gpu-mcp`, validiert ihn und öffnet den Pull Request. Das Quell-Repo hat seinen
+eigenen `build`-Workflow (vet, Cross-Compile, Smoke-Test) und veröffentlicht die Binaries bei
+einem `v*`-Tag als GitHub-Release.
+
+Actions-Minuten: Die Organisation liegt im GitHub-Free-Plan, der 2.000 Minuten pro Monat für
+private Repositories enthält. Eine Katalogvalidierung braucht deutlich unter einer Minute.
 ## Eine Änderung ausliefern
 
 ```mermaid

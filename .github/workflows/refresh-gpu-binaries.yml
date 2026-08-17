@@ -1,0 +1,70 @@
+name: refresh-gpu-binaries
+
+# Rebuilds the gpu-mcp binaries from the Go source committed in plugins/gpu-mcp/
+# and opens a pull request with the new binaries and version bumps.
+# No local Go toolchain and no cross-repository token needed.
+
+on:
+  workflow_dispatch:
+    inputs:
+      catalog_version:
+        description: "New catalog version (empty = bump patch of the current one)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: plugins/gpu-mcp/go.mod
+          cache: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build binaries from the committed source
+        working-directory: plugins/gpu-mcp
+        run: |
+          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags "-s -w" -o gpu-mcp.exe .
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags "-s -w" -o gpu-mcp-linux .
+
+      - name: Smoke test the fresh Linux binary
+        working-directory: plugins/gpu-mcp
+        run: |
+          chmod +x test/fakebin/nvidia-smi gpu-mcp-linux
+          PATH="$PWD/test/fakebin:$PATH" ./gpu-mcp-linux < test/session.jsonl > out.jsonl
+          python3 test/check_session.py out.jsonl
+          rm -f out.jsonl
+
+      - name: Sync versions (plugin.json, marketplace.json)
+        id: bump
+        run: python scripts/bump_versions.py "${{ inputs.catalog_version }}"
+
+      - name: Validate catalog
+        run: python scripts/validate_catalog.py .
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: ci/refresh-gpu-binaries
+          delete-branch: true
+          commit-message: "ci(gpu-mcp): Binaries neu gebaut, Version ${{ steps.bump.outputs.plugin_version }}, Katalog ${{ steps.bump.outputs.catalog_version }}"
+          title: "ci(gpu-mcp): Binaries neu gebaut (Plugin ${{ steps.bump.outputs.plugin_version }}, Katalog ${{ steps.bump.outputs.catalog_version }})"
+          body: |
+            Automatisch erzeugt von `refresh-gpu-binaries`.
+
+            - `plugins/gpu-mcp/gpu-mcp.exe` und `gpu-mcp-linux` aus dem eingecheckten Go-Quellcode neu gebaut
+            - Plugin-Version: **${{ steps.bump.outputs.plugin_version }}** (aus `main.go`)
+            - Katalog-Version: **${{ steps.bump.outputs.catalog_version }}**
+            - `scripts/validate_catalog.py` ist gruen
+
+            Merge loest die Synchronisation nach Claude aus.

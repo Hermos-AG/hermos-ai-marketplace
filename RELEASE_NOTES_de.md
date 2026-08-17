@@ -2,6 +2,35 @@
 
 > English version: [RELEASE_NOTES.md](RELEASE_NOTES.md)
 
+## 1.4.2 — 17. August 2026
+
+Der Katalog baut und prüft sich jetzt selbst auf GitHub. Für ein neues gpu-mcp-Binary
+braucht niemand mehr eine Go-Toolchain, und eine veraltete Release-Kopie kommt nicht mehr
+nach `main`.
+
+```mermaid
+flowchart LR
+    subgraph SRC["Hermos-AG/HER-gpu-mcp"]
+        A["Push / PR"] --> B["build: vet, Cross-Compile, Smoke-Test"]
+        T["Tag v*"] --> R["GitHub-Release<br/>gpu-mcp.exe + gpu-mcp-linux"]
+    end
+    subgraph CAT["Hermos-AG/hermos-ai-marketplace"]
+        S["scripts/sync-gpu-mcp.ps1<br/>oder Workflow refresh-gpu-binaries"] --> P["Pull Request"]
+        P --> V["validate: Manifeste, Versionen,<br/>Doku-Paare, Binary-Version"]
+        V --> M["Merge → Sync nach Claude"]
+    end
+    R -.->|"Release-Kopie"| S
+```
+
+- **`validate`** läuft bei jedem Push und Pull Request: Katalog- und Plugin-Manifeste,
+  Versionskonsistenz, zweisprachige Doku-Paare, JSON-Syntax und ob die mitgelieferten
+  Binaries wirklich die Plugin-Version tragen.
+- **`refresh-gpu-binaries`** (Actions → Run workflow) baut beide Binaries aus dem
+  eingecheckten Go-Quellcode neu, testet den Linux-Build gegen das Fake-`nvidia-smi`, zieht
+  die Versionen nach und öffnet den Pull Request.
+- **Behoben:** Der Fusion-Eintrag in `marketplace.json` hieß `HERMOS-Fusion`, das Manifest
+  aber `hermos-fusion` — jetzt stimmen beide überein.
+- Plugins unverändert: `hermos-fusion` 0.3.1, `HERMOS-local-GPU` 0.2.0.
 ## 1.4.1 — 17. August 2026
 
 Aufräum-Release: Der Katalog heißt jetzt **`hermos-ai-marketplace`** und liegt bei den

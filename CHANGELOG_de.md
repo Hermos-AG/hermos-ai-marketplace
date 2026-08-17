@@ -14,6 +14,7 @@ gitGraph
     commit id: "Echte Tools 0.2.0"
     commit id: "HERMOS-local-GPU 0.2.0"
     commit id: "Umzug + Umbenennung 1.4.1"
+    commit id: "CI 1.4.2"
 ```
 
 ## [Unveröffentlicht]
@@ -23,6 +24,29 @@ gitGraph
 - Skill für den Agent-Rollout, gesteuert über updateRequired in der Flotte
 - Container-Abgleich: Sollzustand gegen Istzustand je Gerät
 
+## [1.4.2] - 2026-08-17
+
+### Hinzugefügt
+
+- GitHub-Actions-Workflow `validate`: bei jedem Push und Pull Request prüft
+  `scripts/validate_catalog.py` das Katalog-Manifest, alle Plugin-Manifeste, die
+  Versionskonsistenz, die zweisprachigen Doku-Paare, alle JSON-Dateien und ob die
+  mitgelieferten Binaries die Plugin-Version tragen (findet eine veraltete Release-Kopie).
+  `claude plugin validate .` läuft als informativer Schritt mit.
+- GitHub-Actions-Workflow `refresh-gpu-binaries` (manuell): baut die Binaries in
+  `plugins/gpu-mcp` für windows/amd64 und linux/amd64 aus dem eingecheckten Go-Quellcode neu,
+  testet den Linux-Build gegen das Fake-`nvidia-smi`, zieht die Versionen nach und öffnet
+  einen Pull Request. Keine lokale Go-Toolchain nötig.
+- `scripts/bump_versions.py` — übernimmt die Plugin-Version aus `main.go` und hebt die
+  Katalogversion; zeilenbasierte Edits erhalten die JSON-Formatierung.
+- `scripts/sync-gpu-mcp.ps1` — kopiert den Release-Stand aus dem Quell-Repo
+  `Hermos-AG/HER-gpu-mcp` nach `plugins/gpu-mcp`, validiert und öffnet den Pull Request.
+
+### Behoben
+
+- In `marketplace.json` hieß der Fusion-Eintrag `HERMOS-Fusion`, im Manifest aber
+  `hermos-fusion`. Der Eintrag folgt jetzt dem Manifest — dem Namen, den alle
+  Installationsbefehle und die Doku ohnehin verwenden.
 ## [1.4.1] - 2026-08-17
 
 ### Geändert

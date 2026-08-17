@@ -14,6 +14,7 @@ gitGraph
     commit id: "real tools 0.2.0"
     commit id: "HERMOS-local-GPU 0.2.0"
     commit id: "renamed + moved 1.4.1"
+    commit id: "CI 1.4.2"
 ```
 
 ## [Unreleased]
@@ -23,6 +24,28 @@ gitGraph
 - Agent rollout skill, driven by updateRequired across the fleet
 - Container drift check: desired state versus live state per device
 
+## [1.4.2] - 2026-08-17
+
+### Added
+
+- GitHub Actions `validate`: on every push and pull request `scripts/validate_catalog.py`
+  checks the catalog manifest, every plugin manifest, version consistency, the bilingual
+  documentation pairs, all JSON files, and that shipped binaries carry the plugin version
+  (catches a stale release copy). `claude plugin validate .` runs as an informational step.
+- GitHub Actions `refresh-gpu-binaries` (manual): rebuilds `plugins/gpu-mcp` binaries for
+  windows/amd64 and linux/amd64 from the committed Go source, smoke-tests the Linux build
+  against the fake `nvidia-smi`, syncs the versions and opens a pull request. No local Go
+  toolchain needed.
+- `scripts/bump_versions.py` — takes the plugin version from `main.go` and raises the
+  catalog version, with line-based edits that keep the JSON formatting.
+- `scripts/sync-gpu-mcp.ps1` — copies the release state from the source repo
+  `Hermos-AG/HER-gpu-mcp` into `plugins/gpu-mcp`, validates it and opens the pull request.
+
+### Fixed
+
+- `marketplace.json` listed the Fusion plugin as `HERMOS-Fusion` while its manifest says
+  `hermos-fusion`. The entry now matches the manifest — the name every install command and
+  the documentation already used.
 ## [1.4.1] - 2026-08-17
 
 ### Changed

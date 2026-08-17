@@ -13,6 +13,7 @@ gitGraph
     commit id: "Geruest 0.1.0"
     commit id: "Echte Tools 0.2.0"
     commit id: "HERMOS-local-GPU 0.2.0"
+    commit id: "Umzug + Umbenennung 1.4.1"
 ```
 
 ## [Unveröffentlicht]
@@ -22,6 +23,27 @@ gitGraph
 - Skill für den Agent-Rollout, gesteuert über updateRequired in der Flotte
 - Container-Abgleich: Sollzustand gegen Istzustand je Gerät
 
+## [1.4.1] - 2026-08-17
+
+### Geändert
+
+- Repository von `HER-Claude-Catalog` in **`hermos-ai-marketplace`** umbenannt (GitHub leitet
+  die alte URL weiter) und die Arbeitskopie von `D:\DEV\HER\Claude.Catalog` nach
+  **`D:\DEV\HER\HER-MCP\hermos-ai-marketplace`** verschoben — der Marktplatz liegt damit
+  direkt neben den MCP-Server-Quellen, die er veröffentlicht.
+- README: neuer Abschnitt, wo die Quellen liegen — ein privates Repository je MCP-Server
+  (`HER-gpu-mcp`, `HER-unifi-network-mcp`, `HER-windows-mcp`); `plugins/<name>/` hier ist die
+  Release-Kopie. Alle Pfade und Repository-Verweise nachgezogen.
+
+### Hinzugefügt
+
+- `docs/ADDING-A-PLUGIN.md` / `docs/ADDING-A-PLUGIN_de.md` — die Plugin-Checkliste mit
+  Vorlagen, übernommen aus der früheren Zweitkopie dieses Katalogs.
+
+### Hinweis
+
+- Kein Plugin verändert: `hermos-fusion` bleibt 0.3.1, `HERMOS-local-GPU` bleibt 0.2.0.
+  Katalog 1.4.0 → 1.4.1, damit der Versionssprung die Umbenennung per Pull Request trägt.
 ## [1.4.0] - 2026-08-16
 
 ### Hinzugefügt

@@ -30,7 +30,7 @@ Der einzige Weg, der in der App automatisch installiert.
 
 - Team- oder Enterprise-Plan, Owner- oder Primary-Owner-Rechte
 - Cowork **und** Skills für die Organisation aktiviert
-- Die Cowork-GitHub-App auf `Hermos-AG/HER-Claude-Catalog` installiert
+- Die Cowork-GitHub-App auf `Hermos-AG/hermos-ai-marketplace` installiert
 - Repository privat oder intern – öffentliche Repos werden hier abgelehnt
 
 Die Bedingungen auf Repository-Seite erfüllt dieser Katalog bereits: privat, auf
@@ -40,7 +40,7 @@ github.com, und die Plugin-Quelle ist ein relativer Pfad im selben Repository.
 
 1. Organisationseinstellungen → **Plugins**
 2. **Plugin hinzufügen** → Quelle **GitHub**
-3. `Hermos-AG/HER-Claude-Catalog` eintragen. Dein persönliches GitHub-Token wird einmal
+3. `Hermos-AG/hermos-ai-marketplace` eintragen. Dein persönliches GitHub-Token wird einmal
    geprüft, danach läuft die Synchronisierung über das Token der GitHub-App.
 4. Die erste Synchronisierung startet von selbst.
 5. Marktplatz öffnen und die Installationspräferenz für `hermos-fusion` auf
@@ -84,7 +84,7 @@ Hebel.
 {
   "extraKnownMarketplaces": {
     "hermos": {
-      "source": { "source": "github", "repo": "Hermos-AG/HER-Claude-Catalog" },
+      "source": { "source": "github", "repo": "Hermos-AG/hermos-ai-marketplace" },
       "autoUpdate": true
     }
   },
@@ -146,7 +146,7 @@ In die `.claude/settings.json` eines Repositorys, mit dem das Team ohnehin arbei
 {
   "extraKnownMarketplaces": {
     "hermos": {
-      "source": { "source": "github", "repo": "Hermos-AG/HER-Claude-Catalog" },
+      "source": { "source": "github", "repo": "Hermos-AG/hermos-ai-marketplace" },
       "autoUpdate": true
     }
   }
@@ -185,7 +185,7 @@ In der App: Anpassen → Plugins.
 
 ## Was auf GitHub-Seite nötig ist
 
-Jede Kollegin braucht Lesezugriff auf `Hermos-AG/HER-Claude-Catalog` und funktionierende
+Jede Kollegin braucht Lesezugriff auf `Hermos-AG/hermos-ai-marketplace` und funktionierende
 Git-Credentials. Claude Code klont mit dem, was `git clone` auf diesem Rechner auch nutzen
 würde – Credential-Helper oder SSH-Schlüssel. Ein `GITHUB_TOKEN` wirkt nur über einen
 Credential-Helper, der ihn ausliest.

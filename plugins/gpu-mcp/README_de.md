@@ -11,7 +11,7 @@ kontrollierte Befehlsausführung jedem MCP-Client zur Verfügung, insbesondere d
 
 Kein Python, kein Node.js, kein Installer: eine einzige kompilierte `gpu-mcp.exe`.
 
-Gelistet im **[HERMOS Claude Catalog](../../README_de.md)** (Fachbereich
+Gelistet im **[HERMOS AI Marketplace](../../README_de.md)** (Fachbereich
 **AI-DEV**) als installierbares Plugin **`HERMOS-local-GPU`** — es läuft
 **lokal auf dem Rechner jedes Entwicklers mit ausreichender GPU** (siehe
 [Voraussetzungen](#voraussetzungen)).
@@ -78,12 +78,12 @@ sequenceDiagram
     D-->>C: GPU-Metriken
 ```
 
-## Installation über den HERMOS Claude Catalog (empfohlen)
+## Installation über den HERMOS AI Marketplace (empfohlen)
 
 In Claude Code oder der Claude-Desktop-App (Cowork):
 
 ```
-/plugin marketplace add Hermos-AG/HER-Claude-Catalog
+/plugin marketplace add Hermos-AG/hermos-ai-marketplace
 /plugin install HERMOS-local-GPU@hermos
 ```
 
@@ -242,7 +242,7 @@ PATH="$PWD/test/fakebin:$PATH" ./gpu-mcp-linux < test/session.jsonl
 ## Projektstruktur
 
 ```
-gpu-mcp/                                 # = Plugin-Ordner im HERMOS Claude Catalog
+gpu-mcp/                                 # = Plugin-Ordner im HERMOS AI Marketplace
 ├── .claude-plugin/plugin.json           # Plugin-Manifest (Marketplace)
 ├── .mcp.json                            # mitgelieferte MCP-Server-Konfig (${CLAUDE_PLUGIN_ROOT})
 ├── gpu-mcp.exe                          # einsatzbereites Windows-Binary (amd64)

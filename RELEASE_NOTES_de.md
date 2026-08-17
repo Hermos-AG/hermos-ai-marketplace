@@ -2,6 +2,28 @@
 
 > English version: [RELEASE_NOTES.md](RELEASE_NOTES.md)
 
+## 1.4.1 — 17. August 2026
+
+Aufräum-Release: Der Katalog heißt jetzt **`hermos-ai-marketplace`** und liegt bei den
+MCP-Server-Quellen statt für sich allein. Ein privates Repository je MCP-Server.
+
+```mermaid
+flowchart LR
+    subgraph N["D:/DEV/HER/HER-MCP"]
+        M["hermos-ai-marketplace/<br/>Katalog hermos 1.4.1"]
+        G["gpu-mcp/ → HER-gpu-mcp"]
+        U["unifi-network-mcp/ → HER-unifi-network-mcp"]
+        W["windows-mcp/ → HER-windows-mcp"]
+    end
+    O["alt: D:/DEV/HER/Claude.Catalog<br/>HER-Claude-Catalog"] -.->|"umbenannt + verschoben"| M
+    G -->|"Release-Kopie"| M
+```
+
+- **Für installierte Nutzer nichts zu tun** — GitHub leitet die alte Repository-URL weiter.
+  Verweise trotzdem bei Gelegenheit auf `Hermos-AG/hermos-ai-marketplace` umstellen.
+- **Plugins unverändert:** `hermos-fusion` 0.3.1, `HERMOS-local-GPU` 0.2.0.
+- **Neue Doku:** Die Plugin-Checkliste `docs/ADDING-A-PLUGIN_de.md` (und die englische Fassung)
+  liegt jetzt im Katalog selbst.
 ## 1.4.0 — 16. August 2026
 
 Zweites Plugin im Katalog: `HERMOS-local-GPU` bringt die eigene NVIDIA-GPU des

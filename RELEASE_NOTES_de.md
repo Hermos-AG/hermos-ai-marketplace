@@ -2,6 +2,25 @@
 
 > English version: [RELEASE_NOTES.md](RELEASE_NOTES.md)
 
+## 1.4.3 — 17. August 2026
+
+Korrektur zu 1.4.2: Die Organisation lässt Workflows mit einem read-only Token laufen,
+deshalb übergibt `refresh-gpu-binaries` die neu gebauten Binaries als Artefakt, statt selbst
+den Pull Request zu öffnen.
+
+```mermaid
+flowchart LR
+    W["Actions: refresh-gpu-binaries"] --> B["Build + Smoke-Test<br/>+ geplanter Versions-Diff"]
+    B --> A["Artefakt: gpu-mcp.exe + gpu-mcp-linux"]
+    A --> S["pwsh scripts/sync-gpu-mcp.ps1 -BinariesFrom ..."]
+    S --> P["Pull Request → validate → Merge → Sync"]
+    O["Org-Owner erlaubt<br/>Write-Rechte + PR-Erstellung"] -.->|"dann"| P
+```
+
+- Weiterhin keine lokale Go-Toolchain nötig — gebaut wird auf GitHub.
+- `scripts/sync-gpu-mcp.ps1 -BinariesFrom <entpacktes Artefakt>` legt die Binaries ab, zieht
+  die Versionen nach, validiert und öffnet den Pull Request.
+- Plugins unverändert: `hermos-fusion` 0.3.1, `HERMOS-local-GPU` 0.2.0.
 ## 1.4.2 — 17. August 2026
 
 Der Katalog baut und prüft sich jetzt selbst auf GitHub. Für ein neues gpu-mcp-Binary

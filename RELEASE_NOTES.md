@@ -2,6 +2,25 @@
 
 > Deutsche Fassung: [RELEASE_NOTES_de.md](RELEASE_NOTES_de.md)
 
+## 1.4.3 — 17 August 2026
+
+Correction to 1.4.2: the organisation runs workflows with a read-only token, so
+`refresh-gpu-binaries` hands the rebuilt binaries over as an artifact instead of opening the
+pull request itself.
+
+```mermaid
+flowchart LR
+    W["Actions: refresh-gpu-binaries"] --> B["build + smoke test<br/>+ planned version diff"]
+    B --> A["artifact: gpu-mcp.exe + gpu-mcp-linux"]
+    A --> S["pwsh scripts/sync-gpu-mcp.ps1 -BinariesFrom ..."]
+    S --> P["pull request → validate → merge → sync"]
+    O["org owner enables<br/>write permissions + PR creation"] -.->|"then"| P
+```
+
+- Still no local Go toolchain required — the build happens on GitHub.
+- `scripts/sync-gpu-mcp.ps1 -BinariesFrom <unzipped artifact>` puts the binaries in place,
+  syncs versions, validates and opens the pull request.
+- Plugins unchanged: `hermos-fusion` 0.3.1, `HERMOS-local-GPU` 0.2.0.
 ## 1.4.2 — 17 August 2026
 
 The catalog now builds and checks itself on GitHub. Nobody needs a Go toolchain to ship a

@@ -24,6 +24,23 @@ gitGraph
 - Skill für den Agent-Rollout, gesteuert über updateRequired in der Flotte
 - Container-Abgleich: Sollzustand gegen Istzustand je Gerät
 
+## [1.4.3] - 2026-08-17
+
+### Geändert
+
+- `refresh-gpu-binaries` legt die neu gebauten Binaries als **Workflow-Artefakt** ab, statt
+  einen Pull Request zu öffnen. Die Organisation erzwingt ein read-only `GITHUB_TOKEN`
+  (Actions → General → Workflow permissions); kein Workflow kann daher einen Branch pushen
+  oder einen Pull Request anlegen. Gebaut, smoke-getestet, Versionssprung geplant und der
+  vorgesehene Manifest-Diff in der Run-Zusammenfassung ausgegeben wird trotzdem.
+- `scripts/sync-gpu-mcp.ps1` kennt `-BinariesFrom <Ordner>`, damit Binaries aus einem
+  heruntergeladenen Artefakt statt aus einem lokalen Build übernommen werden können.
+
+### Hinweis
+
+- Stellt ein Org-Owner auf „Read and write permissions" plus „Allow GitHub Actions to create
+  and approve pull requests" um, kann der Workflow wieder selbst den Pull Request öffnen
+  (ein Schritt, `peter-evans/create-pull-request`).
 ## [1.4.2] - 2026-08-17
 
 ### Hinzugefügt

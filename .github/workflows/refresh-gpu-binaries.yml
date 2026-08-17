@@ -1,20 +1,27 @@
 name: refresh-gpu-binaries
 
-# Rebuilds the gpu-mcp binaries from the Go source committed in plugins/gpu-mcp/
-# and opens a pull request with the new binaries and version bumps.
-# No local Go toolchain and no cross-repository token needed.
+# Rebuilds the gpu-mcp binaries from the Go source committed in plugins/gpu-mcp/ and
+# publishes them as a workflow artifact, so nobody needs a local Go toolchain.
+#
+# Why an artifact and not a pull request: the organisation currently forces a read-only
+# GITHUB_TOKEN ("Workflow permissions: read repository contents" in the org's Actions
+# settings), so a workflow cannot push a branch or open a pull request. Once an owner
+# switches the org to "Read and write permissions" plus "Allow GitHub Actions to create and
+# approve pull requests", this workflow can commit and open the PR itself.
+#
+# Until then: download the artifact, drop both binaries into plugins/gpu-mcp/ (or use
+# scripts/sync-gpu-mcp.ps1 -BinariesFrom <unzipped folder>), and open the pull request.
 
 on:
   workflow_dispatch:
     inputs:
       catalog_version:
-        description: "New catalog version (empty = bump patch of the current one)"
+        description: "Catalog version to plan for (empty = patch bump of the current one)"
         required: false
         default: ""
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   refresh:
@@ -45,26 +52,45 @@ jobs:
           python3 test/check_session.py out.jsonl
           rm -f out.jsonl
 
-      - name: Sync versions (plugin.json, marketplace.json)
+      - name: Requirement check honours the VRAM threshold
+        working-directory: plugins/gpu-mcp
+        run: |
+          set +e
+          PATH="$PWD/test/fakebin:$PATH" ./gpu-mcp-linux --check; met=$?
+          PATH="$PWD/test/fakebin:$PATH" GPU_MCP_MIN_VRAM_MB=999999 ./gpu-mcp-linux --check; notmet=$?
+          set -e
+          [ "$met" -eq 0 ] || { echo "::error::expected RESULT: MET"; exit 1; }
+          [ "$notmet" -ne 0 ] || { echo "::error::expected RESULT: NOT MET"; exit 1; }
+
+      - name: Plan version changes
         id: bump
         run: python scripts/bump_versions.py "${{ inputs.catalog_version }}"
 
-      - name: Validate catalog
+      - name: Validate catalog with the planned versions
         run: python scripts/validate_catalog.py .
 
-      - name: Open pull request
-        uses: peter-evans/create-pull-request@v7
+      - name: Summary
+        run: |
+          {
+            echo "## gpu-mcp binaries rebuilt"
+            echo
+            echo "- plugin version: **${{ steps.bump.outputs.plugin_version }}**"
+            echo "- catalog version: **${{ steps.bump.outputs.catalog_version }}**"
+            echo
+            echo "### Planned manifest changes"
+            echo '```diff'
+            git diff -- .claude-plugin/marketplace.json plugins/gpu-mcp/.claude-plugin/plugin.json || true
+            echo '```'
+            echo
+            echo "Download the artifact, copy both binaries into \`plugins/gpu-mcp/\`"
+            echo "(or run \`pwsh scripts/sync-gpu-mcp.ps1 -BinariesFrom <unzipped folder>\`),"
+            echo "then open the pull request. Merging it triggers the sync to Claude."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
         with:
-          branch: ci/refresh-gpu-binaries
-          delete-branch: true
-          commit-message: "ci(gpu-mcp): Binaries neu gebaut, Version ${{ steps.bump.outputs.plugin_version }}, Katalog ${{ steps.bump.outputs.catalog_version }}"
-          title: "ci(gpu-mcp): Binaries neu gebaut (Plugin ${{ steps.bump.outputs.plugin_version }}, Katalog ${{ steps.bump.outputs.catalog_version }})"
-          body: |
-            Automatisch erzeugt von `refresh-gpu-binaries`.
-
-            - `plugins/gpu-mcp/gpu-mcp.exe` und `gpu-mcp-linux` aus dem eingecheckten Go-Quellcode neu gebaut
-            - Plugin-Version: **${{ steps.bump.outputs.plugin_version }}** (aus `main.go`)
-            - Katalog-Version: **${{ steps.bump.outputs.catalog_version }}**
-            - `scripts/validate_catalog.py` ist gruen
-
-            Merge loest die Synchronisation nach Claude aus.
+          name: gpu-mcp-${{ steps.bump.outputs.plugin_version }}-binaries
+          path: |
+            plugins/gpu-mcp/gpu-mcp.exe
+            plugins/gpu-mcp/gpu-mcp-linux
+          retention-days: 30

@@ -181,7 +181,7 @@ Owner-Rechten voraus, ausserdem müssen Cowork und Skills aktiviert sein.
 | Workflow | Auslöser | Was er tut |
 |---|---|---|
 | `validate` | Push auf `main`, jeder Pull Request | `scripts/validate_catalog.py`: Katalog- und Plugin-Manifeste, Versionskonsistenz, zweisprachige Doku-Paare, JSON-Syntax und ob die mitgelieferten Binaries die Plugin-Version tragen. `claude plugin validate .` läuft informativ mit. |
-| `refresh-gpu-binaries` | manuell (Actions → Run workflow) | Baut die Binaries in `plugins/gpu-mcp` (windows/amd64 + linux/amd64) aus dem eingecheckten Go-Quellcode neu, testet den Linux-Build gegen das Fake-`nvidia-smi`, zieht die Versionen nach, öffnet einen Pull Request. |
+| `refresh-gpu-binaries` | manuell (Actions → Run workflow) | Baut die Binaries in `plugins/gpu-mcp` (windows/amd64 + linux/amd64) aus dem eingecheckten Go-Quellcode neu, testet den Linux-Build gegen das Fake-`nvidia-smi`, plant den Versionssprung und legt die Binaries als Workflow-Artefakt ab. |
 
 Lokal kopiert `pwsh scripts/sync-gpu-mcp.ps1` den Release-Stand aus dem Quell-Repo
 `Hermos-AG/HER-gpu-mcp`, validiert ihn und öffnet den Pull Request. Das Quell-Repo hat seinen
@@ -190,6 +190,14 @@ einem `v*`-Tag als GitHub-Release.
 
 Actions-Minuten: Die Organisation liegt im GitHub-Free-Plan, der 2.000 Minuten pro Monat für
 private Repositories enthält. Eine Katalogvalidierung braucht deutlich unter einer Minute.
+
+**Hinweis zur Org-Richtlinie:** Workflows laufen derzeit mit einem read-only `GITHUB_TOKEN`
+(Org-Einstellung Actions → General → Workflow permissions). Kein Workflow kann daher einen
+Branch pushen oder einen Pull Request öffnen. Deshalb übergibt `refresh-gpu-binaries` die
+Binaries als Artefakt: herunterladen, dann
+`pwsh scripts/sync-gpu-mcp.ps1 -BinariesFrom <entpackter Ordner>`. Stellt ein Org-Owner auf
+„Read and write permissions" plus „Allow GitHub Actions to create and approve pull requests"
+um, wird daraus ein vollautomatischer Pull Request.
 ## Eine Änderung ausliefern
 
 ```mermaid

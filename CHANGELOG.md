@@ -24,6 +24,23 @@ gitGraph
 - Agent rollout skill, driven by updateRequired across the fleet
 - Container drift check: desired state versus live state per device
 
+## [1.4.3] - 2026-08-17
+
+### Changed
+
+- `refresh-gpu-binaries` publishes the rebuilt binaries as a **workflow artifact** instead of
+  opening a pull request. The organisation forces a read-only `GITHUB_TOKEN`
+  (Actions → General → Workflow permissions), so no workflow can push a branch or create a
+  pull request. The job still builds, smoke-tests, plans the version bump and prints the
+  intended manifest diff in the run summary.
+- `scripts/sync-gpu-mcp.ps1` takes `-BinariesFrom <folder>` so binaries from a downloaded
+  artifact can be used instead of a local build.
+
+### Note
+
+- If an org owner switches to "Read and write permissions" plus "Allow GitHub Actions to
+  create and approve pull requests", the workflow can be flipped back to opening the pull
+  request itself (one step, `peter-evans/create-pull-request`).
 ## [1.4.2] - 2026-08-17
 
 ### Added

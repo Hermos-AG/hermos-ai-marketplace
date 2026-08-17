@@ -9,7 +9,10 @@
 #>
 param(
   [string]$Source = (Join-Path (Split-Path $PSScriptRoot -Parent) '..\gpu-mcp'),
-  [string]$CatalogVersion = ''
+  [string]$CatalogVersion = '',
+  # Folder with gpu-mcp.exe / gpu-mcp-linux, e.g. an unzipped artifact of the
+  # refresh-gpu-binaries workflow. Default: take the binaries from -Source.
+  [string]$BinariesFrom = ''
 )
 
 $ErrorActionPreference = 'Stop'
@@ -34,8 +37,10 @@ foreach ($file in $files) {
 }
 Copy-Item (Join-Path $source 'test') (Join-Path $target 'test') -Recurse -Force
 
+$binarySource = if ($BinariesFrom) { (Resolve-Path $BinariesFrom).Path } else { $source }
+Write-Host "binaries from: $binarySource"
 foreach ($binary in @('gpu-mcp.exe', 'gpu-mcp-linux')) {
-  $from = Join-Path $source $binary
+  $from = Join-Path $binarySource $binary
   if (Test-Path $from) { Copy-Item $from (Join-Path $target $binary) -Force; Write-Host "  copied $binary" }
   else { Write-Warning "$binary not in the source working copy — build it, or let the workflow refresh-gpu-binaries do it" }
 }

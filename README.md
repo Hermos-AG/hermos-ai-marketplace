@@ -177,7 +177,7 @@ both Cowork and Skills enabled.
 | Workflow | Trigger | What it does |
 |---|---|---|
 | `validate` | push to `main`, every pull request | `scripts/validate_catalog.py`: catalog and plugin manifests, version consistency, bilingual doc pairs, JSON syntax, and whether shipped binaries carry the plugin version. `claude plugin validate .` runs as an informational step. |
-| `refresh-gpu-binaries` | manual (Actions → Run workflow) | Rebuilds `plugins/gpu-mcp` binaries (windows/amd64 + linux/amd64) from the committed Go source, smoke-tests the Linux build against the fake `nvidia-smi`, syncs versions, opens a pull request. |
+| `refresh-gpu-binaries` | manual (Actions → Run workflow) | Rebuilds `plugins/gpu-mcp` binaries (windows/amd64 + linux/amd64) from the committed Go source, smoke-tests the Linux build against the fake `nvidia-smi`, plans the version bump and publishes the binaries as a workflow artifact. |
 
 Locally, `pwsh scripts/sync-gpu-mcp.ps1` copies the release state out of the source repo
 `Hermos-AG/HER-gpu-mcp`, validates it and opens the pull request. The source repo has its own
@@ -186,6 +186,13 @@ on a `v*` tag.
 
 Actions minutes: the organisation is on the GitHub Free plan, which includes 2,000 minutes
 per month for private repositories. A catalog validation takes well under a minute.
+
+**Org policy note:** workflows currently run with a read-only `GITHUB_TOKEN` (org setting
+Actions → General → Workflow permissions), so no workflow can push a branch or open a pull
+request. That is why `refresh-gpu-binaries` hands the binaries over as an artifact: download
+it, then `pwsh scripts/sync-gpu-mcp.ps1 -BinariesFrom <unzipped folder>`. An org owner who
+switches to "Read and write permissions" plus "Allow GitHub Actions to create and approve
+pull requests" turns this into a fully automatic pull request.
 ## Releasing a change
 
 ```mermaid

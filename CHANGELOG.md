@@ -13,6 +13,7 @@ gitGraph
     commit id: "scaffold 0.1.0"
     commit id: "real tools 0.2.0"
     commit id: "HERMOS-local-GPU 0.2.0"
+    commit id: "renamed + moved 1.4.1"
 ```
 
 ## [Unreleased]
@@ -22,6 +23,27 @@ gitGraph
 - Agent rollout skill, driven by updateRequired across the fleet
 - Container drift check: desired state versus live state per device
 
+## [1.4.1] - 2026-08-17
+
+### Changed
+
+- Repository renamed from `HER-Claude-Catalog` to **`hermos-ai-marketplace`** (GitHub keeps
+  the old URL redirecting) and the working copy moved from `D:\DEV\HER\Claude.Catalog` to
+  **`D:\DEV\HER\HER-MCP\hermos-ai-marketplace`**, so the marketplace sits next to the MCP
+  server sources it publishes.
+- README: new section on where the sources live — one private repository per MCP server
+  (`HER-gpu-mcp`, `HER-unifi-network-mcp`, `HER-windows-mcp`), `plugins/<name>/` in here is
+  the release copy. All paths and repository references updated.
+
+### Added
+
+- `docs/ADDING-A-PLUGIN.md` / `docs/ADDING-A-PLUGIN_de.md` — the plugin checklist with
+  templates, taken over from the former second copy of this catalog.
+
+### Note
+
+- No plugin changed: `hermos-fusion` stays at 0.3.1, `HERMOS-local-GPU` at 0.2.0. Catalog
+  1.4.0 → 1.4.1 so the version bump can carry the rename through a pull request.
 ## [1.4.0] - 2026-08-16
 
 ### Added

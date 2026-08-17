@@ -1,4 +1,4 @@
-# HERMOS Claude Catalog
+# HERMOS AI Marketplace
 
 Interner Plugin-Marktplatz für Claude Cowork und Claude Code bei HERMOS.
 
@@ -45,11 +45,30 @@ Die ersten vier Tools lesen nur. `gpu_run_command` führt beliebige Befehle mit 
 Rechten des angemeldeten Benutzers aus – Details und Sicherheitshinweise:
 [`plugins/gpu-mcp/README_de.md`](plugins/gpu-mcp/README_de.md).
 
+## Wo dieses Repo liegt — und wo die Quellen liegen
+
+Arbeitskopie: `D:\DEV\HER\HER-MCP\hermos-ai-marketplace` — direkt neben den MCP-Server-Quellen,
+die es veröffentlicht. Jeder MCP-Server hat sein eigenes privates Repository in der
+Organisation `Hermos-AG`:
+
+| Server | Quell-Repo | Arbeitskopie |
+|---|---|---|
+| `gpu-mcp` (Plugin `HERMOS-local-GPU`) | `Hermos-AG/HER-gpu-mcp` | `D:\DEV\HER\HER-MCP\gpu-mcp` |
+| `unifi-network-mcp` | `Hermos-AG/HER-unifi-network-mcp` (upstream `sirkirby/unifi-network-mcp`) | `D:\DEV\HER\HER-MCP\unifi-network-mcp` |
+| `windows-mcp` | `Hermos-AG/HER-windows-mcp` (upstream `CursorTouch/Windows-MCP`) | `D:\DEV\HER\HER-MCP\windows-mcp` |
+| Fusion-MCP (Plugin `hermos-fusion`) | Teil der Fusion-Solution, `D:\DEV\HER\Fusion` | gehosteter Endpunkt, kein Checkout nötig |
+
+`plugins/<name>/` in diesem Repo ist die **Release-Kopie** eines Servers: entwickelt wird im
+Quell-Repo, der Release-Stand wird hierher kopiert, Version hochgezählt, Pull Request auf.
+Übersicht aller Repositories: `D:\DEV\HER\HER-MCP\README.md`.
+
+Dieses Repository hieß bis zum 17.08.2026 `HER-Claude-Catalog`; GitHub leitet die alte URL
+weiter, bitte trotzdem `Hermos-AG/hermos-ai-marketplace` verwenden.
 ## Aufbau des Repositorys
 
 ```mermaid
 graph TD
-    R["Claude.Catalog/"] --> M[".claude-plugin/marketplace.json"]
+    R["hermos-ai-marketplace/"] --> M[".claude-plugin/marketplace.json"]
     R --> P["plugins/"]
     P --> F["hermos-fusion/"]
     F --> FM[".claude-plugin/plugin.json"]
@@ -124,7 +143,7 @@ flowchart LR
 **Lokaler Testlauf** – ohne Push:
 
 ```bash
-cd D:\DEV\HER\Claude.Catalog
+cd D:\DEV\HER\HER-MCP\hermos-ai-marketplace
 claude
 /plugin marketplace add .
 /plugin install hermos-fusion@hermos
@@ -137,10 +156,10 @@ Rechner voraus – nach der Installation prüfen mit dem Tool
 
 **Persönlich, von GitHub:** Reiter Cowork, in der Seitenleiste „Anpassen", dann
 „Plugins durchsuchen", „Persönlich", die Schaltfläche „+", „Marketplace von GitHub
-hinzufügen", anschliessend `Hermos-AG/HER-Claude-Catalog` eintragen.
+hinzufügen", anschliessend `Hermos-AG/hermos-ai-marketplace` eintragen.
 
 **Firmenweit:** Organisationseinstellungen, „Plugins", „Plugin hinzufügen", Quelle
-GitHub, Repository als `Hermos-AG/HER-Claude-Catalog`. Setzt einen Team- oder Enterprise-Plan mit
+GitHub, Repository als `Hermos-AG/hermos-ai-marketplace`. Setzt einen Team- oder Enterprise-Plan mit
 Owner-Rechten voraus, ausserdem müssen Cowork und Skills aktiviert sein.
 
 ## Randbedingungen, die man kennen sollte

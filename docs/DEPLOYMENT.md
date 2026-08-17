@@ -30,7 +30,7 @@ The only route that installs automatically in the app.
 
 - Team or Enterprise plan, Owner or Primary Owner rights
 - Cowork **and** Skills enabled for the organization
-- The Cowork GitHub App installed on `Hermos-AG/HER-Claude-Catalog`
+- The Cowork GitHub App installed on `Hermos-AG/hermos-ai-marketplace`
 - The repository private or internal — public repositories are rejected here
 
 This catalog already satisfies the repository-side rules: private, on github.com, and the
@@ -40,7 +40,7 @@ plugin source is a relative path inside the same repository.
 
 1. Organization settings → **Plugins**
 2. **Add plugin** → source **GitHub**
-3. Enter `Hermos-AG/HER-Claude-Catalog`. Your personal GitHub token is checked once to
+3. Enter `Hermos-AG/hermos-ai-marketplace`. Your personal GitHub token is checked once to
    confirm you have access; afterwards sync runs on the GitHub App installation token.
 4. The first sync starts on its own.
 5. Open the marketplace and set the installation preference for `hermos-fusion` to
@@ -80,7 +80,7 @@ Neither users nor projects can override managed settings. This is the strongest 
 {
   "extraKnownMarketplaces": {
     "hermos": {
-      "source": { "source": "github", "repo": "Hermos-AG/HER-Claude-Catalog" },
+      "source": { "source": "github", "repo": "Hermos-AG/hermos-ai-marketplace" },
       "autoUpdate": true
     }
   },
@@ -141,7 +141,7 @@ Into the `.claude/settings.json` of a repository the team already works in:
 {
   "extraKnownMarketplaces": {
     "hermos": {
-      "source": { "source": "github", "repo": "Hermos-AG/HER-Claude-Catalog" },
+      "source": { "source": "github", "repo": "Hermos-AG/hermos-ai-marketplace" },
       "autoUpdate": true
     }
   }
@@ -178,7 +178,7 @@ In the app: Customize → Plugins.
 
 ## Requirements on the GitHub side
 
-Every colleague needs read access to `Hermos-AG/HER-Claude-Catalog` and working git
+Every colleague needs read access to `Hermos-AG/hermos-ai-marketplace` and working git
 credentials. Claude Code clones with whatever `git clone` would use on that machine —
 credential helpers or SSH keys. A `GITHUB_TOKEN` only takes effect through a credential
 helper that reads it.

@@ -82,7 +82,7 @@ sequenceDiagram
 In Claude Code or the Claude desktop app (Cowork):
 
 ```
-/plugin marketplace add Hermos-AG/HER-Claude-Catalog
+/plugin marketplace add Hermos-AG/hermos-ai-marketplace
 /plugin install HERMOS-local-GPU@hermos
 ```
 

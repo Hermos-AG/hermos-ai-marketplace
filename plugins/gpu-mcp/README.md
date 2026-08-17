@@ -10,7 +10,7 @@ GPU and start GPU jobs on your machine from anywhere.
 
 No Python, no Node.js, no installer: a single compiled `gpu-mcp.exe`.
 
-Listed in the **[HERMOS Claude Catalog](../../README.md)** (business unit
+Listed in the **[HERMOS AI Marketplace](../../README.md)** (business unit
 **AI-DEV**) as the installable plugin **`HERMOS-local-GPU`** — it runs
 **locally on every developer's machine with a sufficient GPU** (see
 [Requirements](#requirements)).
@@ -77,7 +77,7 @@ sequenceDiagram
     D-->>C: GPU metrics
 ```
 
-## Installation via the HERMOS Claude Catalog (recommended)
+## Installation via the HERMOS AI Marketplace (recommended)
 
 In Claude Code or the Claude desktop app (Cowork):
 
@@ -237,7 +237,7 @@ PATH="$PWD/test/fakebin:$PATH" ./gpu-mcp-linux < test/session.jsonl
 ## Project layout
 
 ```
-gpu-mcp/                                 # = plugin folder in the HERMOS Claude Catalog
+gpu-mcp/                                 # = plugin folder in the HERMOS AI Marketplace
 ├── .claude-plugin/plugin.json           # plugin manifest (marketplace)
 ├── .mcp.json                            # bundled MCP server config (${CLAUDE_PLUGIN_ROOT})
 ├── gpu-mcp.exe                          # ready-to-use Windows binary (amd64)

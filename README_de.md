@@ -10,7 +10,7 @@ sieht die unten aufgeführten Plugins.
 
 ## Was drin ist
 
-**`hermos-fusion` 0.2.0** – Edge-Geräteverwaltung über den Fusion-MCP-Server.
+**`HERMOS-Fusion` 0.3.1** – Edge-Geräteverwaltung über den Fusion-MCP-Server.
 
 | Skill | Wofür |
 |-------|-------|
@@ -96,7 +96,7 @@ Organisation `Hermos-AG`:
 | `gpu-mcp` (Plugin `HERMOS-local-GPU`) | `Hermos-AG/HER-gpu-mcp` | `D:\DEV\HER\HER-MCP\gpu-mcp` |
 | `unifi-network-mcp` | `Hermos-AG/HER-unifi-network-mcp` (upstream `sirkirby/unifi-network-mcp`) | `D:\DEV\HER\HER-MCP\unifi-network-mcp` |
 | `windows-mcp` | `Hermos-AG/HER-windows-mcp` (upstream `CursorTouch/Windows-MCP`) | `D:\DEV\HER\HER-MCP\windows-mcp` |
-| Fusion-MCP (Plugin `hermos-fusion`) | Teil der Fusion-Solution, `D:\DEV\HER\Fusion` | gehosteter Endpunkt, kein Checkout nötig |
+| Fusion-MCP (Plugin `HERMOS-Fusion`) | Teil der Fusion-Solution, `D:\DEV\HER\Fusion` | gehosteter Endpunkt, kein Checkout nötig |
 
 `plugins/<name>/` in diesem Repo ist die **Release-Kopie** eines Servers: entwickelt wird im
 Quell-Repo, der Release-Stand wird hierher kopiert, Version hochgezählt, Pull Request auf.
@@ -137,7 +137,7 @@ graph TD
 ## Authentifizierung
 
 Der Fusion-MCP-Server liegt hinter Entra ID. Der Client öffnet einen Browser, du meldest
-dich mit deinem gewöhnlichen Hermos-Konto an, und jeder Werkzeugaufruf läuft mit demselben
+dich mit deinem gewöhnlichen HERMOS-Konto an, und jeder Werkzeugaufruf läuft mit demselben
 Mandanten und denselben Rollen wie im Fusion-Web-UI. In der `.mcp.json` steht deshalb
 nichts ausser der URL.
 
@@ -175,7 +175,7 @@ flowchart LR
     B -->|"Nur ich"| C["Cowork: Anpassen, Plugins durchsuchen, Persönlich, Plus, Marketplace hinzufügen"]
     B -->|"Ganze Firma"| D["Organisationseinstellungen, Plugins, Plugin hinzufügen, GitHub"]
     B -->|"Terminal"| E["claude, dann slash plugin marketplace add"]
-    C --> F["hermos-fusion installieren"]
+    C --> F["HERMOS-Fusion installieren"]
     D --> F
     E --> F
 ```
@@ -186,7 +186,7 @@ flowchart LR
 cd D:\DEV\HER\HER-MCP\hermos-ai-marketplace
 claude
 /plugin marketplace add .
-/plugin install hermos-fusion@hermos
+/plugin install HERMOS-Fusion@hermos
 /plugin install HERMOS-local-GPU@hermos
 ```
 

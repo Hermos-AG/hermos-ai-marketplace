@@ -87,7 +87,7 @@ Fachbereich (`tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev`, `operations`,
 ```
 
 Zwei Kategorien sind keine Fachbereiche, sondern beschreiben, wo der Server läuft:
-`operations` für gehostete Dienste (z. B. `hermos-fusion`), `networking` für Netz- und
+`operations` für gehostete Dienste (z. B. `HERMOS-Fusion`), `networking` für Netz- und
 Gebäudeinfrastruktur (die UniFi-Plugins) und **`desktop`** für
 Server, die lokal auf dem Rechner des Entwicklers laufen — dort stehen
 `HERMOS-local-GPU` und `HERMOS-local-Windows`. Lokale Plugins müssen ihre

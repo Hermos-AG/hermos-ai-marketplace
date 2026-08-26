@@ -15,6 +15,7 @@ gitGraph
     commit id: "HERMOS-local-GPU 0.2.0"
     commit id: "Umzug + Umbenennung 1.4.1"
     commit id: "CI 1.4.2"
+    commit id: "HERMOS gross 1.6.1"
     commit id: "HERMOS-local-Windows 1.5.0"
     commit id: "UniFi x3 1.6.0"
 ```
@@ -26,6 +27,31 @@ gitGraph
 - Skill für den Agent-Rollout, gesteuert über updateRequired in der Flotte
 - Container-Abgleich: Sollzustand gegen Istzustand je Gerät
 
+## [1.6.1] - 2026-08-26
+
+### Geändert
+
+- **Hausschreibweise: HERMOS steht immer in Grossbuchstaben.** Das Fusion-Plugin heisst
+  nicht mehr `hermos-fusion`, sondern **`HERMOS-Fusion`** — im Manifest, im Katalogeintrag
+  und als Server-Schlüssel in seiner `.mcp.json`. Installationsbefehl jetzt
+  `/plugin install HERMOS-Fusion@hermos`.
+- Fliesstext, Titel und Beschreibungen schreiben HERMOS durchgehend gross (zum Beispiel
+  „dein gewöhnliches HERMOS-Konto").
+- README: Der Fusion-Abschnitt zeigte noch 0.2.0, jetzt 0.3.1.
+
+### Bewusst unverändert
+
+- Katalog-ID `hermos` (jeder `@hermos`-Installationsbefehl und jeder bereits hinzugefügte
+  Marktplatz funktioniert weiter), Repository-Name, Ordner `plugins/hermos-fusion`,
+  Schlagwortlisten, E-Mail-Adressen und `hermos.com`-URLs.
+- Die drei UniFi-Plugins behalten ihre Upstream-Namen (`unifi-network`, `unifi-protect`,
+  `unifi-access`); HERMOS steht in Beschreibung und Doku.
+
+### Hinweis
+
+- Die Umbenennung des MCP-Server-Schlüssels ändert die Tool-Namen von
+  `mcp__hermos-fusion__…` zu `mcp__HERMOS-Fusion__…`. Zuvor erteilte Tool-Freigaben müssen
+  daher einmal neu bestätigt werden.
 ## [1.6.0] - 2026-08-26
 
 ### Hinzugefügt

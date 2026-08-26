@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "hermos-fusion": {
+    "HERMOS-Fusion": {
       "type": "http",
       "url": "https://mcp.prod.aks.az.hermos.com/mcp"
     }

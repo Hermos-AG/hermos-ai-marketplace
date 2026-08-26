@@ -2,6 +2,35 @@
 
 > Deutsche Fassung: [RELEASE_NOTES_de.md](RELEASE_NOTES_de.md)
 
+## 1.6.1 — 26 August 2026
+
+House style: **HERMOS is always written in capitals.** The Fusion plugin follows the same
+pattern as the other HERMOS plugins and is now called `HERMOS-Fusion`.
+
+```mermaid
+flowchart LR
+    subgraph N["Names in capitals"]
+        A["HERMOS-Fusion 0.3.1"]
+        B["HERMOS-local-GPU 0.2.0"]
+        C["HERMOS-local-Windows 0.8.5"]
+    end
+    subgraph U["Upstream names kept"]
+        D["unifi-network 0.25.1"]
+        E["unifi-protect 0.7.4"]
+        F["unifi-access 0.5.5"]
+    end
+    G["catalog id hermos<br/>unchanged: @hermos keeps working"]
+```
+
+- **New install command:** `/plugin install HERMOS-Fusion@hermos`. Anyone who has the
+  marketplace added keeps working with `@hermos` — the catalog id is untouched on purpose.
+- **One-time step:** the plugin's MCP server key changed too, so tool names go from
+  `mcp__hermos-fusion__…` to `mcp__HERMOS-Fusion__…` and tool permissions have to be granted
+  once more.
+- **Unchanged:** repository name, the folder `plugins/hermos-fusion`, keywords, e-mail
+  addresses and `hermos.com` URLs. The UniFi plugins keep their upstream names.
+- No plugin content changed: `HERMOS-Fusion` 0.3.1, `HERMOS-local-GPU` 0.2.0,
+  `HERMOS-local-Windows` 0.8.5, UniFi trio unchanged. Catalog 1.6.0 → 1.6.1.
 ## 1.6.0 — 26 August 2026
 
 The UniFi estate joins the catalog: three servers for **Network**, **Protect** and
@@ -236,7 +265,7 @@ flowchart TD
 ### Authentication, settled
 
 The endpoint uses Entra ID. The client opens a browser, you sign in with your normal
-Hermos account, and every tool call runs with the same tenant and roles you have in the
+HERMOS account, and every tool call runs with the same tenant and roles you have in the
 Fusion web UI. Nothing goes into `.mcp.json` beyond the URL.
 
 Personal access tokens (`fpat_…`) exist for headless use — CI, machines without a

@@ -11,8 +11,8 @@ kontrollierte Befehlsausführung jedem MCP-Client zur Verfügung, insbesondere d
 
 Kein Python, kein Node.js, kein Installer: eine einzige kompilierte `gpu-mcp.exe`.
 
-Gelistet im **[HERMOS AI Marketplace](../../README_de.md)** (Fachbereich
-**AI-DEV**) als installierbares Plugin **`HERMOS-local-GPU`** — es läuft
+Gelistet im **[HERMOS AI Marketplace](../../README_de.md)** (Kategorie
+`desktop`) als installierbares Plugin **`HERMOS-local-GPU`** — es läuft
 **lokal auf dem Rechner jedes Entwicklers mit ausreichender GPU** (siehe
 [Voraussetzungen](#voraussetzungen)).
 

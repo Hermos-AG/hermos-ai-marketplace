@@ -72,7 +72,7 @@ machen (Referenzimplementierung: `gpu-mcp` mit dem Tool
 ## 4 · Im Katalog registrieren
 
 Eintrag in `.claude-plugin/marketplace.json` ergänzen, mit `category` = euer
-Fachbereich (`tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev`):
+Fachbereich (`tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev`, `operations`, `networking`, `desktop`):
 
 ```json
 {
@@ -85,6 +85,13 @@ Fachbereich (`tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev`):
   "tags": ["..."]
 }
 ```
+
+Zwei Kategorien sind keine Fachbereiche, sondern beschreiben, wo der Server läuft:
+`operations` für gehostete Dienste (z. B. `hermos-fusion`), `networking` für Netz- und
+Gebäudeinfrastruktur (die UniFi-Plugins) und **`desktop`** für
+Server, die lokal auf dem Rechner des Entwicklers laufen — dort stehen
+`HERMOS-local-GPU` und `HERMOS-local-Windows`. Lokale Plugins müssen ihre
+Voraussetzungen (Hardware, Betriebssystem, Laufzeit) nennen und möglichst prüfbar machen.
 
 ## 5 · Vor dem Push testen
 

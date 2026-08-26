@@ -45,6 +45,46 @@ Die ersten vier Tools lesen nur. `gpu_run_command` führt beliebige Befehle mit 
 Rechten des angemeldeten Benutzers aus – Details und Sicherheitshinweise:
 [`plugins/gpu-mcp/README_de.md`](plugins/gpu-mcp/README_de.md).
 
+**`HERMOS-local-Windows` 0.8.5** – der Windows-Arbeitsplatz selbst als MCP-Server
+(Projekt `windows-mcp`, der HERMOS-Fork von `CursorTouch/Windows-MCP`, MIT). Läuft
+**lokal** über stdio. Einzige Voraussetzung auf dem Rechner ist `uv`; `uvx` holt beim
+ersten Start das gepinnte Release `windows-mcp@0.8.5`, Quellcode liegt hier keiner.
+
+| Tool-Gruppe | Tools | Zugriff |
+|---|---|---|
+| Sehen | `Snapshot`, `Screenshot`, `DisplayInventory`, `Scrape` | nur lesend |
+| Oberfläche bedienen | `Click`, `Type`, `Move`, `Scroll`, `Shortcut`, `MultiSelect`, `MultiEdit`, `Wait`, `WaitFor` | **steuert den Desktop** |
+| Apps & System | `App`, `Process`, `Notification`, `Clipboard` | startet und wechselt Anwendungen, Zwischenablage |
+| Tiefer Zugriff | `FileSystem`, `PowerShell`, `Registry` | **Dateien, beliebige Befehle, Registry** |
+
+Die Telemetrie ist im Plugin abgeschaltet (`ANONYMIZED_TELEMETRY=false`). Für einen
+eingeschränkten Rollout bleibt mit `WINDOWS_MCP_EXCLUDE_TOOLS=PowerShell,Registry,FileSystem`
+eine Variante zum Schauen und Klicken – Details und Sicherheitshinweise:
+[`plugins/windows-mcp/README_de.md`](plugins/windows-mcp/README_de.md).
+
+**`unifi-network` 0.25.1 · `unifi-protect` 0.7.4 · `unifi-access` 0.5.5** – die
+UniFi-Landschaft als drei MCP-Server (Upstream `sirkirby/unifi-mcp`, MIT; HERMOS-Fork
+`Hermos-AG/HER-unifi-network-mcp`). Jeder startet lokal per `uvx` aus einem gepinnten
+PyPI-Release und spricht über HTTPS mit seinem Controller.
+
+| Plugin | Deckt ab | Skills |
+|---|---|---|
+| `unifi-network` | Geräte, Clients, Firewall, VPN, Routing, WLANs, Traffic Flows, Statistiken | `unifi-network`, `network-health-check`, `firewall-auditor`, `firewall-manager`, `unifi-network-setup` |
+| `unifi-protect` | Kameras, NVR, Aufzeichnungen, Smart Detections, Leuchten, Sensoren | `unifi-protect`, `security-digest`, `unifi-protect-setup` |
+| `unifi-access` | Türen, Schlösser, Berechtigungen, Besucher, Zutrittsrichtlinien, Ereignisse | `unifi-access`, `unifi-access-setup` |
+
+Zugangsdaten liegen **nie** hier: Die `.mcp.json`-Dateien verweisen nur auf die
+Umgebungsvariablen `UNIFI_NETWORK_*` / `UNIFI_PROTECT_*` / `UNIFI_ACCESS_*`, die jeder
+Entwickler lokal setzt (Hilfsskripte liegen jedem Plugin bei). Nötig ist ein lokales
+UniFi-Admin-Konto — Cloud-/SSO-Konten können die API nicht nutzen.
+
+Diese Plugins verändern echte Infrastruktur und berühren personenbezogene Daten —
+Firewall-Regeln, Kameramaterial, Türereignisse. Vor einem Rollout die
+Sicherheitshinweise je Plugin lesen:
+[network](plugins/unifi-network/README_de.md) ·
+[protect](plugins/unifi-protect/README_de.md) ·
+[access](plugins/unifi-access/README_de.md).
+
 ## Wo dieses Repo liegt — und wo die Quellen liegen
 
 Arbeitskopie: `D:\DEV\HER\HER-MCP\hermos-ai-marketplace` — direkt neben den MCP-Server-Quellen,

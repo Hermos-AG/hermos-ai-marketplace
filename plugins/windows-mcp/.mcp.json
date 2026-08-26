@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "HERMOS-local-Windows": {
+      "command": "uvx",
+      "args": ["windows-mcp@0.8.5", "serve"],
+      "env": {
+        "ANONYMIZED_TELEMETRY": "false"
+      }
+    }
+  }
+}

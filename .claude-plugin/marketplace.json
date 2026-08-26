@@ -1,6 +1,6 @@
 {
   "name": "hermos",
-  "version": "1.4.3",
+  "version": "1.6.0",
   "description": "Interner Plugin-Katalog der HERMOS AG für Claude Cowork und Claude Code",
   "owner": {
     "name": "HERMOS",
@@ -24,8 +24,40 @@
       "source": "./plugins/gpu-mcp",
       "description": "Lokale NVIDIA-GPU-Brücke: GPU-Monitoring und kontrollierte GPU-Jobs auf dem eigenen Entwickler-Rechner über nvidia-smi. Voraussetzung: NVIDIA-GPU mit mindestens 8 GB VRAM (konfigurierbar über GPU_MCP_MIN_VRAM_MB)",
       "version": "0.2.0",
-      "category": "ai-dev",
+      "category": "desktop",
       "keywords": ["hermos", "gpu", "nvidia", "cuda", "mcp", "monitoring", "local", "windows"]
+    },
+    {
+      "name": "HERMOS-local-Windows",
+      "source": "./plugins/windows-mcp",
+      "description": "Windows-Desktop-Automatisierung auf dem eigenen Entwickler-Rechner: Fenster und Apps steuern, UI-Baum und Screenshots lesen, Tastatur, Maus, Zwischenablage, Prozesse, Dateisystem, PowerShell und Registry. Voraussetzung: Windows 10/11 und uv (uvx)",
+      "version": "0.8.5",
+      "category": "desktop",
+      "keywords": ["hermos", "windows", "desktop", "automation", "ui", "mcp", "local"]
+    },
+    {
+      "name": "unifi-network",
+      "source": "./plugins/unifi-network",
+      "description": "UniFi-Netzwerk verwalten: Geräte, Clients, Firewall-Regeln, VPN, Routing, WLANs, Traffic Flows und Statistiken — inklusive Skills für Health-Check und Firewall-Audit. Voraussetzung: uv, erreichbarer UniFi-Controller und lokales Admin-Konto",
+      "version": "0.25.1",
+      "category": "networking",
+      "keywords": ["unifi", "network", "firewall", "wifi", "vpn", "mcp"]
+    },
+    {
+      "name": "unifi-protect",
+      "source": "./plugins/unifi-protect",
+      "description": "UniFi Protect verwalten: Kameras, Smart Detections, Aufzeichnungen, Snapshots, Leuchten und Sensoren. Voraussetzung: uv, erreichbarer Protect-NVR und lokales Admin-Konto. Achtung: Kameramaterial ist personenbezogen",
+      "version": "0.7.4",
+      "category": "networking",
+      "keywords": ["unifi", "protect", "cameras", "nvr", "security", "mcp"]
+    },
+    {
+      "name": "unifi-access",
+      "source": "./plugins/unifi-access",
+      "description": "UniFi Access verwalten: Türschlösser, Berechtigungen, Besucher, Zutrittsrichtlinien und Türereignisse. Voraussetzung: uv, erreichbarer Access-Controller und lokales Admin-Konto. Achtung: physische Zutrittskontrolle und personenbezogene Ereignisse",
+      "version": "0.5.5",
+      "category": "networking",
+      "keywords": ["unifi", "access", "doors", "credentials", "mcp"]
     }
   ]
 }

@@ -2,6 +2,64 @@
 
 > Deutsche Fassung: [RELEASE_NOTES_de.md](RELEASE_NOTES_de.md)
 
+## 1.6.0 — 26 August 2026
+
+The UniFi estate joins the catalog: three servers for **Network**, **Protect** and
+**Access**, taken as release copies from the upstream project `sirkirby/unifi-mcp`
+(MIT) through the HERMOS fork. New category `networking`.
+
+```mermaid
+flowchart LR
+    C["Claude"] --> N["unifi-network 0.25.1"]
+    C --> P["unifi-protect 0.7.4"]
+    C --> A["unifi-access 0.5.5"]
+    N --> NC["controller:<br/>devices · firewall · VPN · WLANs"]
+    P --> PC["NVR:<br/>cameras · detections · recordings"]
+    A --> AC["controller:<br/>doors · credentials · visitors"]
+    N -.->|"UNIFI_NETWORK_*"| E[["credentials from<br/>the environment"]]
+    P -.->|"UNIFI_PROTECT_*"| E
+    A -.->|"UNIFI_ACCESS_*"| E
+```
+
+- **Ten skills come along** — among them `firewall-auditor` (rates rules against
+  security benchmarks), `firewall-manager` (policies from plain language),
+  `network-health-check` and `security-digest` (what happened across cameras,
+  doors and firewall).
+- **Pinned releases** — `uvx unifi-network-mcp==0.25.1`, `unifi-protect-mcp==0.7.4`,
+  `unifi-access-mcp==0.5.5`. `uv` on the machine is the only prerequisite.
+- **No credentials in the repository** — only environment variables, set per
+  developer; each plugin ships `check-prereqs` and `set-env` scripts.
+- **Read the security notes.** These tools change firewall rules, see camera
+  footage and can open doors. Least-privilege UniFi accounts, and for Protect and
+  Access clarify the use with data protection before going beyond a test.
+- Catalog 1.5.0 → 1.6.0; the existing three plugins are unchanged.
+
+## 1.5.0 — 26 August 2026
+
+Third plugin, and a new category: **`HERMOS-local-Windows`** turns the Windows
+workstation itself into an MCP server. Claude can read the UI tree, take
+screenshots, click and type, manage windows and processes and — where allowed —
+reach the file system, PowerShell and the registry. Everything local, over stdio.
+
+```mermaid
+flowchart LR
+    A["/plugin install<br/>HERMOS-local-Windows@hermos"] --> B["uvx pulls<br/>windows-mcp@0.8.5"]
+    B --> C["stdio server, telemetry off"]
+    C --> D["20 tools:<br/>see · drive UI · apps · deep access"]
+    D --> E{"restricted rollout?"}
+    E -->|"WINDOWS_MCP_EXCLUDE_TOOLS"| F["without PowerShell,<br/>Registry, FileSystem"]
+```
+
+- **No vendored source** — the plugin ships a `.mcp.json` only; `uvx` fetches the
+  pinned PyPI release `windows-mcp@0.8.5` and a matching Python on first start.
+  `uv` on the machine is the only prerequisite.
+- **New category `desktop`** for servers running on the developer's own machine.
+  `HERMOS-local-GPU` moves there from `ai-dev`, so both local plugins sit together.
+- **Handle with care** — `PowerShell`, `Registry` and `FileSystem` add up to full
+  control of the workstation with the logged-in user's rights, and screenshots
+  capture whatever is on screen. `WINDOWS_MCP_EXCLUDE_TOOLS` trims the set.
+- Catalog 1.4.3 → 1.5.0. `hermos-fusion` 0.3.1 and `HERMOS-local-GPU` 0.2.0 unchanged.
+
 ## 1.4.3 — 17 August 2026
 
 Correction to 1.4.2: the organisation runs workflows with a read-only token, so

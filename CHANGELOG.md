@@ -15,6 +15,8 @@ gitGraph
     commit id: "HERMOS-local-GPU 0.2.0"
     commit id: "renamed + moved 1.4.1"
     commit id: "CI 1.4.2"
+    commit id: "HERMOS-local-Windows 1.5.0"
+    commit id: "UniFi x3 1.6.0"
 ```
 
 ## [Unreleased]
@@ -23,6 +25,61 @@ gitGraph
 
 - Agent rollout skill, driven by updateRequired across the fleet
 - Container drift check: desired state versus live state per device
+
+## [1.6.0] - 2026-08-26
+
+### Added
+
+- Three UniFi plugins, category `networking`, as release copies of the upstream
+  plugins from `sirkirby/unifi-mcp` (MIT) via the HERMOS fork
+  `Hermos-AG/HER-unifi-network-mcp`:
+  - `unifi-network` 0.25.1 — devices, clients, firewall, VPN, routing, WLANs,
+    traffic flows, statistics; skills for health check, firewall audit and
+    firewall management.
+  - `unifi-protect` 0.7.4 — cameras, NVR, recordings, smart detections, lights,
+    sensors; security digest across all three products.
+  - `unifi-access` 0.5.5 — doors, locks, credentials, visitors, access policies,
+    events.
+- Each server starts as `uvx <package>==<version>` from the pinned PyPI release;
+  the plugins ship the upstream skills, prerequisite checks and env helper scripts.
+- New category `networking` for network and building infrastructure, documented
+  in `docs/ADDING-A-PLUGIN.md`.
+
+### Note
+
+- No credentials in this repository: the `.mcp.json` files only reference
+  `UNIFI_NETWORK_*`, `UNIFI_PROTECT_*` and `UNIFI_ACCESS_*` environment variables.
+  A local UniFi admin account is required; cloud/SSO accounts cannot use the API.
+- These plugins change real infrastructure and touch personal data (camera
+  footage, door events). Security and data-protection notes are in each plugin's
+  README; upstream defaults to `VERIFY_SSL=false` for self-signed controller
+  certificates.
+
+## [1.5.0] - 2026-08-26
+
+### Added
+
+- Plugin `HERMOS-local-Windows` 0.8.5 (project `windows-mcp`, category `desktop`):
+  the Windows workstation as an MCP server — UI tree and screenshots, keyboard and
+  mouse, windows and processes, clipboard, file system, PowerShell and registry.
+  Started as `uvx windows-mcp@0.8.5 serve`, pinned to the published PyPI release;
+  no source is vendored, `uv` provides the interpreter and the environment.
+  Telemetry off (`ANONYMIZED_TELEMETRY=false`); the deep-access tools can be
+  dropped with `WINDOWS_MCP_EXCLUDE_TOOLS`.
+- New category `desktop` for MCP servers that run on the developer's own
+  workstation, documented in `docs/ADDING-A-PLUGIN.md`.
+
+### Changed
+
+- `HERMOS-local-GPU` moved from category `ai-dev` to `desktop` — both plugins run
+  locally on the developer's machine, so they now share one category.
+
+### Note
+
+- Unlike `gpu-mcp`, `plugins/windows-mcp/` is not a release copy of the server: the
+  pin resolves to the **upstream** PyPI release, while the HERMOS fork stays the
+  development and review copy. Fork-local changes only reach developers via an
+  upstream release, or after switching the pin to the fork's git URL.
 
 ## [1.4.3] - 2026-08-17
 

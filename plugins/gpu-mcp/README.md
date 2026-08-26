@@ -10,8 +10,8 @@ GPU and start GPU jobs on your machine from anywhere.
 
 No Python, no Node.js, no installer: a single compiled `gpu-mcp.exe`.
 
-Listed in the **[HERMOS AI Marketplace](../../README.md)** (business unit
-**AI-DEV**) as the installable plugin **`HERMOS-local-GPU`** — it runs
+Listed in the **[HERMOS AI Marketplace](../../README.md)** (category
+`desktop`) as the installable plugin **`HERMOS-local-GPU`** — it runs
 **locally on every developer's machine with a sufficient GPU** (see
 [Requirements](#requirements)).
 

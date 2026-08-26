@@ -1,0 +1,11 @@
+{
+  "name": "HERMOS-local-Windows",
+  "version": "0.8.5",
+  "description": "Windows-Desktop-Automatisierung auf dem eigenen Entwickler-Rechner: Fenster und Apps steuern, UI-Baum und Screenshots lesen, Tastatur, Maus, Zwischenablage, Prozesse, Dateisystem, PowerShell und Registry. Voraussetzung: Windows 10/11 und uv (uvx)",
+  "author": {
+    "name": "HERMOS",
+    "email": "steffen.mueller@hermos.com"
+  },
+  "keywords": ["hermos", "windows", "desktop", "automation", "ui", "mcp", "local"],
+  "license": "MIT"
+}

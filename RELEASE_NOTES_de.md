@@ -2,6 +2,67 @@
 
 > English version: [RELEASE_NOTES.md](RELEASE_NOTES.md)
 
+## 1.6.0 — 26. August 2026
+
+Die UniFi-Landschaft kommt in den Katalog: drei Server für **Network**, **Protect**
+und **Access**, als Release-Kopien aus dem Upstream-Projekt `sirkirby/unifi-mcp`
+(MIT) über den HERMOS-Fork. Neue Kategorie `networking`.
+
+```mermaid
+flowchart LR
+    C["Claude"] --> N["unifi-network 0.25.1"]
+    C --> P["unifi-protect 0.7.4"]
+    C --> A["unifi-access 0.5.5"]
+    N --> NC["Controller:<br/>Geräte · Firewall · VPN · WLANs"]
+    P --> PC["NVR:<br/>Kameras · Detections · Aufzeichnungen"]
+    A --> AC["Controller:<br/>Türen · Berechtigungen · Besucher"]
+    N -.->|"UNIFI_NETWORK_*"| E[["Zugangsdaten aus<br/>der Umgebung"]]
+    P -.->|"UNIFI_PROTECT_*"| E
+    A -.->|"UNIFI_ACCESS_*"| E
+```
+
+- **Zehn Skills kommen mit** — darunter `firewall-auditor` (bewertet Regeln gegen
+  Security-Benchmarks), `firewall-manager` (Regeln aus natürlicher Sprache),
+  `network-health-check` und `security-digest` (was war los über Kameras, Türen
+  und Firewall hinweg).
+- **Gepinnte Releases** — `uvx unifi-network-mcp==0.25.1`, `unifi-protect-mcp==0.7.4`,
+  `unifi-access-mcp==0.5.5`. Einzige Voraussetzung auf dem Rechner ist `uv`.
+- **Keine Zugangsdaten im Repository** — nur Umgebungsvariablen, je Entwickler
+  gesetzt; jedem Plugin liegen `check-prereqs`- und `set-env`-Skripte bei.
+- **Sicherheitshinweise lesen.** Diese Werkzeuge ändern Firewall-Regeln, sehen
+  Kameramaterial und können Türen öffnen. UniFi-Konten mit möglichst geringen
+  Rechten verwenden und die Nutzung von Protect und Access vor einem Test hinaus
+  mit dem Datenschutz klären.
+- Katalog 1.5.0 → 1.6.0; die bestehenden drei Plugins bleiben unverändert.
+
+## 1.5.0 — 26. August 2026
+
+Drittes Plugin und eine neue Kategorie: **`HERMOS-local-Windows`** macht den
+Windows-Arbeitsplatz selbst zum MCP-Server. Claude kann den UI-Baum lesen,
+Screenshots aufnehmen, klicken und tippen, Fenster und Prozesse verwalten und —
+wo erlaubt — Dateisystem, PowerShell und Registry erreichen. Alles lokal, über stdio.
+
+```mermaid
+flowchart LR
+    A["/plugin install<br/>HERMOS-local-Windows@hermos"] --> B["uvx holt<br/>windows-mcp@0.8.5"]
+    B --> C["stdio-Server, Telemetrie aus"]
+    C --> D["20 Tools:<br/>sehen · bedienen · Apps · tiefer Zugriff"]
+    D --> E{"eingeschränkter Rollout?"}
+    E -->|"WINDOWS_MCP_EXCLUDE_TOOLS"| F["ohne PowerShell,<br/>Registry, FileSystem"]
+```
+
+- **Kein Quellcode im Katalog** — das Plugin liefert nur eine `.mcp.json`; `uvx`
+  holt beim ersten Start das gepinnte PyPI-Release `windows-mcp@0.8.5` und ein
+  passendes Python. Einzige Voraussetzung auf dem Rechner ist `uv`.
+- **Neue Kategorie `desktop`** für Server, die auf dem Rechner des Entwicklers
+  laufen. `HERMOS-local-GPU` wandert von `ai-dev` dorthin, damit beide lokalen
+  Plugins beisammen stehen.
+- **Mit Bedacht einsetzen** — `PowerShell`, `Registry` und `FileSystem` ergeben
+  zusammen die volle Kontrolle über den Arbeitsplatz mit den Rechten des
+  angemeldeten Benutzers, und Screenshots erfassen alles, was auf dem Bildschirm
+  steht. `WINDOWS_MCP_EXCLUDE_TOOLS` beschneidet den Satz.
+- Katalog 1.4.3 → 1.5.0. `hermos-fusion` 0.3.1 und `HERMOS-local-GPU` 0.2.0 unverändert.
+
 ## 1.4.3 — 17. August 2026
 
 Korrektur zu 1.4.2: Die Organisation lässt Workflows mit einem read-only Token laufen,

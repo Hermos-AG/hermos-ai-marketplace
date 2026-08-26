@@ -45,6 +45,45 @@ The first four tools are read-only. `gpu_run_command` executes arbitrary command
 with the logged-in user's permissions — details and security notes:
 [`plugins/gpu-mcp/README.md`](plugins/gpu-mcp/README.md).
 
+**`HERMOS-local-Windows` 0.8.5** — the Windows workstation itself as an MCP server
+(project `windows-mcp`, the HERMOS fork of `CursorTouch/Windows-MCP`, MIT). Runs
+**locally** over stdio. The only prerequisite on the machine is `uv`; `uvx` fetches the
+pinned release `windows-mcp@0.8.5` on first start, no source is vendored here.
+
+| Tool group | Tools | Access |
+|---|---|---|
+| See | `Snapshot`, `Screenshot`, `DisplayInventory`, `Scrape` | read-only |
+| Drive the UI | `Click`, `Type`, `Move`, `Scroll`, `Shortcut`, `MultiSelect`, `MultiEdit`, `Wait`, `WaitFor` | **controls the desktop** |
+| Apps & system | `App`, `Process`, `Notification`, `Clipboard` | starts and switches applications, clipboard |
+| Deep access | `FileSystem`, `PowerShell`, `Registry` | **files, arbitrary commands, registry** |
+
+Telemetry is switched off in the plugin (`ANONYMIZED_TELEMETRY=false`). For a
+restricted rollout, `WINDOWS_MCP_EXCLUDE_TOOLS=PowerShell,Registry,FileSystem`
+leaves a look-and-click variant — details and security notes:
+[`plugins/windows-mcp/README.md`](plugins/windows-mcp/README.md).
+
+**`unifi-network` 0.25.1 · `unifi-protect` 0.7.4 · `unifi-access` 0.5.5** — the UniFi
+estate as three MCP servers (upstream `sirkirby/unifi-mcp`, MIT; HERMOS fork
+`Hermos-AG/HER-unifi-network-mcp`). Each starts locally via `uvx` from a pinned PyPI
+release and talks to its controller over HTTPS.
+
+| Plugin | Covers | Skills |
+|---|---|---|
+| `unifi-network` | devices, clients, firewall, VPN, routing, WLANs, traffic flows, statistics | `unifi-network`, `network-health-check`, `firewall-auditor`, `firewall-manager`, `unifi-network-setup` |
+| `unifi-protect` | cameras, NVR, recordings, smart detections, lights, sensors | `unifi-protect`, `security-digest`, `unifi-protect-setup` |
+| `unifi-access` | doors, locks, credentials, visitors, access policies, events | `unifi-access`, `unifi-access-setup` |
+
+Credentials are **never** stored here: the `.mcp.json` files only reference
+`UNIFI_NETWORK_*` / `UNIFI_PROTECT_*` / `UNIFI_ACCESS_*` environment variables, which
+each developer sets locally (helper scripts ship with every plugin). A local UniFi
+admin account is required — cloud/SSO accounts cannot use the API.
+
+These plugins change real infrastructure and touch personal data — firewall rules,
+camera footage, door events. Read the per-plugin security notes before rolling out:
+[network](plugins/unifi-network/README.md) ·
+[protect](plugins/unifi-protect/README.md) ·
+[access](plugins/unifi-access/README.md).
+
 ## Where this repository lives, and where the sources live
 
 Working copy: `D:\DEV\HER\HER-MCP\hermos-ai-marketplace` — next to the MCP server sources it

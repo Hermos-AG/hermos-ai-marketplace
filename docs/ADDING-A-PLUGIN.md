@@ -71,7 +71,7 @@ implementation).
 ## 4 · Register it in the catalog
 
 Add an entry to `.claude-plugin/marketplace.json`, with `category` = your unit
-(`tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev`):
+(`tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev`, `operations`, `networking`, `desktop`):
 
 ```json
 {
@@ -84,6 +84,13 @@ Add an entry to `.claude-plugin/marketplace.json`, with `category` = your unit
   "tags": ["..."]
 }
 ```
+
+Two categories are not business units but describe where the server runs:
+`operations` for hosted services (e.g. `hermos-fusion`), `networking` for network and
+building infrastructure (the UniFi plugins), and **`desktop`** for
+servers that run locally on the developer's own machine — `HERMOS-local-GPU` and
+`HERMOS-local-Windows` live there. Local plugins must state their prerequisites
+(hardware, OS, runtime) and, where possible, make them checkable.
 
 ## 5 · Test before pushing
 

@@ -2,6 +2,30 @@
 
 > English version: [RELEASE_NOTES.md](RELEASE_NOTES.md)
 
+## 1.6.2 — 26. August 2026
+
+**TNT, FIS und RFID gibt es jetzt als Kategorien.** Eine Kategorie war bisher
+Freitext am Plugin-Eintrag — ein Tippfehler legte stillschweigend eine neue an.
+Jetzt ist es ein definierter Satz mit Schutzplanke.
+
+```mermaid
+flowchart LR
+    A["ALLOWED_CATEGORIES<br/>in validate_catalog.py"] --> B["Fachbereiche:<br/>tnt · fis · rfid<br/>sales · marketing · ai-dev"]
+    A --> C["Betriebsarten:<br/>operations · networking · desktop"]
+    A --> D{"Pull Request"}
+    D -->|"bekannte Kategorie"| E["Validierung läuft durch"]
+    D -->|"Tippfehler, z. B. netwoking"| F["CI schlägt fehl"]
+```
+
+- **Eine Quelle der Wahrheit** — `ALLOWED_CATEGORIES` im Validator; die
+  `Kategorien`-Tabellen der README tragen Bedeutung und aktuelle Einträge. Beides
+  wird gemeinsam geändert, das sagt der Leitfaden jetzt ausdrücklich.
+- **Reserviert und sichtbar** — `tnt`, `fis` und `rfid` haben noch keine Plugins.
+  Der Validator nennt die ungenutzten Kategorien bei jedem Lauf, damit die leeren
+  Bereiche nicht in Vergessenheit geraten; wer dort das erste Plugin listet,
+  ergänzt die Beschreibung.
+- Kein Plugin geändert — niemand bekommt ein sinnloses Update.
+
 ## 1.6.1 — 26. August 2026
 
 Hausschreibweise: **HERMOS steht immer in Grossbuchstaben.** Das Fusion-Plugin folgt jetzt

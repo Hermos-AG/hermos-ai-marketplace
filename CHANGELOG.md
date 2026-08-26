@@ -18,6 +18,7 @@ gitGraph
     commit id: "HERMOS uppercase 1.6.1"
     commit id: "HERMOS-local-Windows 1.5.0"
     commit id: "UniFi x3 1.6.0"
+    commit id: "Kategorien 1.6.2"
 ```
 
 ## [Unreleased]
@@ -26,6 +27,27 @@ gitGraph
 
 - Agent rollout skill, driven by updateRequired across the fleet
 - Container drift check: desired state versus live state per device
+
+## [1.6.2] - 2026-08-26
+
+### Added
+
+- Categories are now defined in one place instead of being free text per entry:
+  `ALLOWED_CATEGORIES` in `scripts/validate_catalog.py` holds the complete set —
+  business units `tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev` and
+  operating modes `operations`, `networking`, `desktop`. An unknown or misspelled
+  category is now an **error**, so CI fails the pull request instead of silently
+  creating a new category.
+- `Categories` section in `README.md` / `README_de.md`: both tables with meaning
+  and current entries. `tnt`, `fis` and `rfid` are reserved for the business units
+  of the same name and still have no entries.
+- The validator reports which categories are defined but unused, so empty business
+  units stay visible.
+
+### Changed
+
+- `docs/ADDING-A-PLUGIN.md` / `_de.md` point at the README table instead of
+  repeating the list.
 
 ## [1.6.1] - 2026-08-26
 

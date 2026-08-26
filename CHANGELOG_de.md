@@ -18,6 +18,7 @@ gitGraph
     commit id: "HERMOS gross 1.6.1"
     commit id: "HERMOS-local-Windows 1.5.0"
     commit id: "UniFi x3 1.6.0"
+    commit id: "Kategorien 1.6.2"
 ```
 
 ## [Unveröffentlicht]
@@ -26,6 +27,27 @@ gitGraph
 
 - Skill für den Agent-Rollout, gesteuert über updateRequired in der Flotte
 - Container-Abgleich: Sollzustand gegen Istzustand je Gerät
+
+## [1.6.2] - 2026-08-26
+
+### Hinzugefügt
+
+- Kategorien sind jetzt an einer Stelle definiert statt Freitext je Eintrag:
+  `ALLOWED_CATEGORIES` in `scripts/validate_catalog.py` enthält den vollständigen
+  Satz — Fachbereiche `tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev` sowie
+  Betriebsarten `operations`, `networking`, `desktop`. Eine unbekannte oder
+  vertippte Kategorie ist jetzt ein **Fehler**: Die CI lässt den Pull Request
+  scheitern, statt stillschweigend eine neue Kategorie anzulegen.
+- Abschnitt `Kategorien` in `README.md` / `README_de.md`: beide Tabellen mit
+  Bedeutung und aktuellen Einträgen. `tnt`, `fis` und `rfid` sind für die
+  gleichnamigen Fachbereiche reserviert und noch ohne Einträge.
+- Der Validator nennt die definierten, aber ungenutzten Kategorien — leere
+  Fachbereiche bleiben so sichtbar.
+
+### Geändert
+
+- `docs/ADDING-A-PLUGIN.md` / `_de.md` verweisen auf die README-Tabelle statt die
+  Liste zu wiederholen.
 
 ## [1.6.1] - 2026-08-26
 

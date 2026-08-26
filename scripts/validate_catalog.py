@@ -17,6 +17,12 @@ ROOT = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
 DOC_PAIRS = ("README", "CHANGELOG", "RELEASE_NOTES")
 KEBAB = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
+# Single source of truth for catalog categories. Keep in sync with the
+# "Categories" table in README.md / README_de.md.
+BUSINESS_UNITS = ("tnt", "fis", "rfid", "sales", "marketing", "ai-dev")
+OPERATING_MODES = ("operations", "networking", "desktop")
+ALLOWED_CATEGORIES = frozenset(BUSINESS_UNITS + OPERATING_MODES)
+
 errors: list[str] = []
 warnings: list[str] = []
 
@@ -102,8 +108,14 @@ def main() -> int:
                 f"{name}: version mismatch — marketplace.json {entry['version']}, "
                 f"plugin.json {manifest.get('version')}"
             )
-        if not entry.get("category"):
+        category = entry.get("category")
+        if not category:
             warnings.append(f"{name}: no 'category' — business unit cannot be derived")
+        elif category not in ALLOWED_CATEGORIES:
+            errors.append(
+                f"{name}: unknown category '{category}' — allowed: "
+                + ", ".join(sorted(ALLOWED_CATEGORIES))
+            )
         if not KEBAB.match(name):
             warnings.append(
                 f"{name}: not kebab-case; Claude Code accepts it, the Claude.ai org sync requires kebab-case"
@@ -122,6 +134,11 @@ def main() -> int:
             rel = f"plugins/{folder.name}"
             if rel not in listed_sources:
                 errors.append(f"{rel} exists but is not listed in marketplace.json")
+
+    used = {e.get("category") for e in catalog["plugins"] if e.get("category")}
+    unused = sorted(ALLOWED_CATEGORIES - used)
+    if unused:
+        print(f"  categories defined, no entries yet: {', '.join(unused)}")
 
     check_doc_pairs(ROOT, "repository root")
     docs = ROOT / "docs"

@@ -86,7 +86,7 @@ Add an entry to `.claude-plugin/marketplace.json`, with `category` = your unit
 ```
 
 Two categories are not business units but describe where the server runs:
-`operations` for hosted services (e.g. `hermos-fusion`), `networking` for network and
+`operations` for hosted services (e.g. `HERMOS-Fusion`), `networking` for network and
 building infrastructure (the UniFi plugins), and **`desktop`** for
 servers that run locally on the developer's own machine — `HERMOS-local-GPU` and
 `HERMOS-local-Windows` live there. Local plugins must state their prerequisites

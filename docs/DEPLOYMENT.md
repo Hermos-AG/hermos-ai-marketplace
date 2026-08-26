@@ -2,7 +2,7 @@
 
 > Deutsche Fassung: [DEPLOYMENT_de.md](DEPLOYMENT_de.md)
 
-Goal: `hermos-fusion` present and enabled for everyone, without each person running
+Goal: `HERMOS-Fusion` present and enabled for everyone, without each person running
 commands by hand.
 
 ## Which path applies
@@ -43,7 +43,7 @@ plugin source is a relative path inside the same repository.
 3. Enter `Hermos-AG/hermos-ai-marketplace`. Your personal GitHub token is checked once to
    confirm you have access; afterwards sync runs on the GitHub App installation token.
 4. The first sync starts on its own.
-5. Open the marketplace and set the installation preference for `hermos-fusion` to
+5. Open the marketplace and set the installation preference for `HERMOS-Fusion` to
    **automatically installed**.
 6. On Enterprise, override that per group if some teams should self-serve instead.
 
@@ -85,7 +85,7 @@ Neither users nor projects can override managed settings. This is the strongest 
     }
   },
   "enabledPlugins": {
-    "hermos-fusion@hermos": true
+    "HERMOS-Fusion@hermos": true
   }
 }
 ```
@@ -167,7 +167,7 @@ later release will not flip them back.
 
 ```bash
 claude plugin marketplace list     # hermos appears
-claude plugin list                 # hermos-fusion@hermos, enabled
+claude plugin list                 # HERMOS-Fusion@hermos, enabled
 ```
 
 Inside a session, `/status` lists the loaded setting sources — the managed file shows up

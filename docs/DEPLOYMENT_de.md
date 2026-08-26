@@ -2,7 +2,7 @@
 
 > English version: [DEPLOYMENT.md](DEPLOYMENT.md)
 
-Ziel: `hermos-fusion` ist bei allen vorhanden und aktiv, ohne dass jemand von Hand
+Ziel: `HERMOS-Fusion` ist bei allen vorhanden und aktiv, ohne dass jemand von Hand
 Befehle eintippt.
 
 ## Welcher Weg passt
@@ -43,7 +43,7 @@ github.com, und die Plugin-Quelle ist ein relativer Pfad im selben Repository.
 3. `Hermos-AG/hermos-ai-marketplace` eintragen. Dein persönliches GitHub-Token wird einmal
    geprüft, danach läuft die Synchronisierung über das Token der GitHub-App.
 4. Die erste Synchronisierung startet von selbst.
-5. Marktplatz öffnen und die Installationspräferenz für `hermos-fusion` auf
+5. Marktplatz öffnen und die Installationspräferenz für `HERMOS-Fusion` auf
    **automatisch installieren** setzen.
 6. Unter Enterprise lässt sich das pro Gruppe abweichend setzen, falls einzelne Teams
    lieber selbst installieren sollen.
@@ -89,7 +89,7 @@ Hebel.
     }
   },
   "enabledPlugins": {
-    "hermos-fusion@hermos": true
+    "HERMOS-Fusion@hermos": true
   }
 }
 ```
@@ -174,7 +174,7 @@ ihn nicht mehr.
 
 ```bash
 claude plugin marketplace list     # hermos erscheint
-claude plugin list                 # hermos-fusion@hermos, enabled
+claude plugin list                 # HERMOS-Fusion@hermos, enabled
 ```
 
 In einer Sitzung listet `/status` die geladenen Einstellungsquellen – die Managed-Datei

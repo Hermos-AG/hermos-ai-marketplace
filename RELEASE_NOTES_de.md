@@ -2,6 +2,36 @@
 
 > English version: [RELEASE_NOTES.md](RELEASE_NOTES.md)
 
+## 1.6.1 — 26. August 2026
+
+Hausschreibweise: **HERMOS steht immer in Grossbuchstaben.** Das Fusion-Plugin folgt jetzt
+demselben Muster wie die anderen HERMOS-Plugins und heisst `HERMOS-Fusion`.
+
+```mermaid
+flowchart LR
+    subgraph N["Namen in Grossbuchstaben"]
+        A["HERMOS-Fusion 0.3.1"]
+        B["HERMOS-local-GPU 0.2.0"]
+        C["HERMOS-local-Windows 0.8.5"]
+    end
+    subgraph U["Upstream-Namen beibehalten"]
+        D["unifi-network 0.25.1"]
+        E["unifi-protect 0.7.4"]
+        F["unifi-access 0.5.5"]
+    end
+    G["Katalog-ID hermos<br/>unverändert: @hermos gilt weiter"]
+```
+
+- **Neuer Installationsbefehl:** `/plugin install HERMOS-Fusion@hermos`. Wer den Marktplatz
+  schon hinzugefügt hat, arbeitet weiter mit `@hermos` — die Katalog-ID bleibt bewusst gleich.
+- **Einmaliger Schritt:** Der MCP-Server-Schlüssel des Plugins wurde mit umbenannt, die
+  Tool-Namen wechseln von `mcp__hermos-fusion__…` zu `mcp__HERMOS-Fusion__…`; Tool-Freigaben
+  müssen einmal neu erteilt werden.
+- **Unverändert:** Repository-Name, Ordner `plugins/hermos-fusion`, Schlagwörter,
+  E-Mail-Adressen und `hermos.com`-URLs. Die UniFi-Plugins behalten ihre Upstream-Namen.
+- Inhaltlich hat sich an den Plugins nichts geändert: `HERMOS-Fusion` 0.3.1,
+  `HERMOS-local-GPU` 0.2.0, `HERMOS-local-Windows` 0.8.5, UniFi-Trio unverändert.
+  Katalog 1.6.0 → 1.6.1.
 ## 1.6.0 — 26. August 2026
 
 Die UniFi-Landschaft kommt in den Katalog: drei Server für **Network**, **Protect**
@@ -244,7 +274,7 @@ flowchart TD
 ### Authentifizierung, geklärt
 
 Der Endpunkt nutzt Entra ID. Der Client öffnet den Browser, du meldest dich mit deinem
-normalen Hermos-Konto an, und jeder Werkzeugaufruf läuft mit demselben Mandanten und
+normalen HERMOS-Konto an, und jeder Werkzeugaufruf läuft mit demselben Mandanten und
 denselben Rollen wie im Fusion-Web-UI. In die `.mcp.json` gehört nichts ausser der URL.
 
 Personal Access Tokens (`fpat_…`) gibt es für den Betrieb ohne Browser – CI, Maschinen

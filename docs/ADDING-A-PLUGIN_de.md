@@ -72,7 +72,10 @@ machen (Referenzimplementierung: `gpu-mcp` mit dem Tool
 ## 4 · Im Katalog registrieren
 
 Eintrag in `.claude-plugin/marketplace.json` ergänzen, mit `category` = euer
-Fachbereich (`tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev`, `operations`, `networking`, `desktop`):
+Fachbereich (`tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev`, `operations`, `networking`,
+`desktop`) — die vollständige Liste mit Bedeutungen ist die
+[Kategorien-Tabelle in der README](../README_de.md#kategorien), erzwungen von
+`scripts/validate_catalog.py`:
 
 ```json
 {

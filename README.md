@@ -84,6 +84,39 @@ camera footage, door events. Read the per-plugin security notes before rolling o
 [protect](plugins/unifi-protect/README.md) ·
 [access](plugins/unifi-access/README.md).
 
+## Categories
+
+Every catalog entry carries exactly one `category`. The list below is the complete
+set — `scripts/validate_catalog.py` enforces it, so an unknown or misspelled value
+fails validation in CI.
+
+**Business units** — who owns the plugin:
+
+| Category | Business unit | Entries |
+|---|---|---|
+| `tnt` | TNT | — |
+| `fis` | FIS | — |
+| `rfid` | RFID | — |
+| `sales` | Sales | — |
+| `marketing` | Marketing | — |
+| `ai-dev` | AI-DEV — internal developer and AI tooling | — |
+
+**Operating modes** — for plugins that serve the whole company rather than one
+unit; they say where the server runs:
+
+| Category | Meaning | Entries |
+|---|---|---|
+| `operations` | hosted service, run centrally | `HERMOS-Fusion` |
+| `networking` | network and building infrastructure | `unifi-network`, `unifi-protect`, `unifi-access` |
+| `desktop` | runs locally on the developer's own machine | `HERMOS-local-GPU`, `HERMOS-local-Windows` |
+
+`tnt`, `fis` and `rfid` are reserved for the business units of the same name and
+have no entries yet. Whoever lists the first plugin there should replace the bare
+unit name in this table with one line on what belongs in it.
+
+Adding or renaming a category means changing `ALLOWED_CATEGORIES` in
+`scripts/validate_catalog.py` **and** this table in the same pull request.
+
 ## Where this repository lives, and where the sources live
 
 Working copy: `D:\DEV\HER\HER-MCP\hermos-ai-marketplace` — next to the MCP server sources it

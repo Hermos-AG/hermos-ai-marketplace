@@ -85,6 +85,39 @@ Sicherheitshinweise je Plugin lesen:
 [protect](plugins/unifi-protect/README_de.md) ·
 [access](plugins/unifi-access/README_de.md).
 
+## Kategorien
+
+Jeder Katalogeintrag trägt genau eine `category`. Die Liste unten ist der
+vollständige Satz — `scripts/validate_catalog.py` erzwingt sie, ein unbekannter
+oder vertippter Wert lässt die Validierung in der CI fehlschlagen.
+
+**Fachbereiche** — wem das Plugin gehört:
+
+| Kategorie | Fachbereich | Einträge |
+|---|---|---|
+| `tnt` | TNT | — |
+| `fis` | FIS | — |
+| `rfid` | RFID | — |
+| `sales` | Sales | — |
+| `marketing` | Marketing | — |
+| `ai-dev` | AI-DEV — interne Entwickler- und KI-Werkzeuge | — |
+
+**Betriebsarten** — für Plugins, die nicht einem Bereich, sondern dem ganzen
+Unternehmen dienen; sie sagen, wo der Server läuft:
+
+| Kategorie | Bedeutung | Einträge |
+|---|---|---|
+| `operations` | gehosteter Dienst, zentral betrieben | `HERMOS-Fusion` |
+| `networking` | Netz- und Gebäudeinfrastruktur | `unifi-network`, `unifi-protect`, `unifi-access` |
+| `desktop` | läuft lokal auf dem Rechner des Entwicklers | `HERMOS-local-GPU`, `HERMOS-local-Windows` |
+
+`tnt`, `fis` und `rfid` sind für die gleichnamigen Fachbereiche reserviert und
+noch ohne Einträge. Wer dort das erste Plugin listet, ersetzt in dieser Tabelle
+den bloßen Bereichsnamen durch eine Zeile dazu, was hineingehört.
+
+Eine Kategorie ergänzen oder umbenennen heißt: `ALLOWED_CATEGORIES` in
+`scripts/validate_catalog.py` **und** diese Tabelle im selben Pull Request ändern.
+
 ## Wo dieses Repo liegt — und wo die Quellen liegen
 
 Arbeitskopie: `D:\DEV\HER\HER-MCP\hermos-ai-marketplace` — direkt neben den MCP-Server-Quellen,

@@ -71,7 +71,10 @@ implementation).
 ## 4 · Register it in the catalog
 
 Add an entry to `.claude-plugin/marketplace.json`, with `category` = your unit
-(`tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev`, `operations`, `networking`, `desktop`):
+(`tnt`, `fis`, `rfid`, `sales`, `marketing`, `ai-dev`, `operations`, `networking`,
+`desktop`) — the complete list with meanings is the
+[Categories table in the README](../README.md#categories), enforced by
+`scripts/validate_catalog.py`:
 
 ```json
 {

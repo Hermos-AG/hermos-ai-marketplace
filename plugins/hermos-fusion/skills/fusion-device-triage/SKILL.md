@@ -23,6 +23,10 @@ Diese Reihenfolge einhalten – sie geht von der breiten Diagnose zur teuren Ein
    - Transfers: `list_device_transfers`, auf `chunksAcked`/`chunksTotal` achten.
    - Last: `get_device_performance` für die letzten 48 Stunden roh,
      `get_device_telemetry` für den längeren Verlauf.
+   - Bereits bekannt? `list_sentinel_findings`/`get_sentinel_finding` zeigen, ob
+     für dieses Gerät schon eine Sentinel-Regel ausgelöst hat, bevor man selbst
+     danach sucht; `get_device_uptime` zeigt die Neustart-Historie direkt und
+     beantwortet damit, ob das Gerät in einer Boot-Schleife steckt.
 
 ## Deutung
 
@@ -36,8 +40,9 @@ Diese Reihenfolge einhalten – sie geht von der breiten Diagnose zur teuren Ein
 ## Regeln
 
 - **Nur lesen.** `container_action`, `send_device_command`, `delete_device`,
-  `remove_device_image`, `abort_device_transfer` und alles Schreibende erst nach
-  ausdrücklicher Zustimmung – und vorher benennen, was passieren wird.
+  `remove_device_image`, `abort_device_transfer`, `acknowledge_sentinel_finding`,
+  `suppress_sentinel_finding` und alles Schreibende erst nach ausdrücklicher
+  Zustimmung – und vorher benennen, was passieren wird.
 - `run_sql_query` sieht alle Mandanten und braucht Admin. Für Fragen zu einem Gerät
   immer die dedizierten Werkzeuge nehmen, nie SQL.
 - Befund und Vermutung trennen. "Queue bei 1.240, keine Consumer" ist ein Befund.

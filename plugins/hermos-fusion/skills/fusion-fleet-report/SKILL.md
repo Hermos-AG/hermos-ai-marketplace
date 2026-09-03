@@ -19,6 +19,9 @@ description: Erstellt einen Flottenüberblick über alle Fusion Edge-Geräte –
      das ist ein Handlungspunkt, kein Hinweis.
    - **Zuordnung** über `orgUnitName` und `tags`.
 3. Gruppieren nach Org-Unit. Innerhalb der Gruppe die Problemfälle nach oben.
+4. Wird zusätzlich nach Sentinel-Befunden gefragt: `list_sentinel_findings`
+   liefert offene Findings fleet-weit, ergänzend zu den drei Zahlen oben – nicht
+   automatisch, nur wenn die Frage danach verlangt.
 
 ## Ausgabeformat
 

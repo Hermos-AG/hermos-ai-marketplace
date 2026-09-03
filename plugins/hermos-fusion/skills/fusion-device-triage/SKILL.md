@@ -26,7 +26,11 @@ Diese Reihenfolge einhalten – sie geht von der breiten Diagnose zur teuren Ein
    - Bereits bekannt? `list_sentinel_findings`/`get_sentinel_finding` zeigen, ob
      für dieses Gerät schon eine Sentinel-Regel ausgelöst hat, bevor man selbst
      danach sucht; `get_device_uptime` zeigt die Neustart-Historie direkt und
-     beantwortet damit, ob das Gerät in einer Boot-Schleife steckt.
+     beantwortet damit, ob das Gerät in einer Boot-Schleife steckt. Ein 404 dort
+     heisst nicht „Gerät gibt es nicht": es deckt auch „ausserhalb deiner
+     Sichtbarkeit" und „sichtbar, aber Sentinel hat noch keine Uptime erfasst"
+     ab. Also melden, dass keine Uptime-Daten vorliegen — nicht, dass das Gerät
+     fehlt.
 
 ## Deutung
 

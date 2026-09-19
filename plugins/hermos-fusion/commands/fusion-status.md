@@ -6,7 +6,9 @@ argument-hint: [geraetename-oder-id]
 Status für: $ARGUMENTS
 
 1. Ist kein Argument da, nach Gerät fragen. Ist es ein Name und keine GUID, über
-   `list_devices` auflösen; bei mehreren Treffern zur Auswahl stellen.
+   `list_devices` auflösen; bei mehreren Treffern zur Auswahl stellen. Kein
+   Treffer in `list_devices` → `list_discovered_devices` prüfen; eine Übernahme
+   läuft über den Skill `fusion-device-triage`.
 2. `get_device` für die Stammdaten, `get_device_diagnostics` für die Lage.
 3. Kompakt antworten, höchstens zehn Zeilen:
    - Name, Org-Unit, Ort

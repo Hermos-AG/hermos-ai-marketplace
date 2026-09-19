@@ -23,6 +23,13 @@ gitGraph
 
 ## [Unreleased]
 
+### Added
+
+- `fusion-device-triage` and `fusion-fleet-report` cover the discovery pool: `list_discovered_devices`
+  (unregistered devices currently sending a valid `openMetaData` feed, tenant-independent) and
+  `adopt_discovered_device` (adopt one into the caller's tenant, optionally into an org unit; a device
+  already registered elsewhere answers `409`). Ships with the next `Fusion.McpServer` deploy.
+
 ### Planned
 
 - Agent rollout skill, driven by updateRequired across the fleet

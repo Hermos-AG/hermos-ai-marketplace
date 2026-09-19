@@ -23,6 +23,14 @@ gitGraph
 
 ## [Unveröffentlicht]
 
+### Hinzugefügt
+
+- `fusion-device-triage` und `fusion-fleet-report` decken jetzt den Discovery-Pool ab:
+  `list_discovered_devices` (unregistrierte Geräte, die aktuell einen gültigen `openMetaData`-Feed
+  senden, mandantenunabhängig) und `adopt_discovered_device` (übernimmt eines in den Mandanten der
+  aufrufenden Person, optional in eine Org-Unit; ein anderswo bereits registriertes Gerät liefert
+  `409`). Kommt mit dem nächsten `Fusion.McpServer`-Deploy.
+
 ### Geplant
 
 - Skill für den Agent-Rollout, gesteuert über updateRequired in der Flotte

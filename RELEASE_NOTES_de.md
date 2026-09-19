@@ -2,6 +2,15 @@
 
 > English version: [RELEASE_NOTES.md](RELEASE_NOTES.md)
 
+## Unveröffentlicht
+
+`fusion-device-triage` und `fusion-fleet-report` kennen jetzt den Discovery-Pool:
+`list_discovered_devices` listet unregistrierte Geräte, die aktuell einen gültigen
+`openMetaData`-Feed senden, und `adopt_discovered_device` übernimmt eines in den Mandanten
+der aufrufenden Person. Ein so gefundenes Gerät braucht danach noch die QR-Registrierung
+(oder `update_device` mit `cmdAuthKey`), bevor es einen Befehlsschlüssel hat – Telemetrie
+funktioniert sofort. Kein Versionssprung des Plugins für diese Änderung.
+
 ## 1.6.2 — 26. August 2026
 
 **TNT, FIS und RFID gibt es jetzt als Kategorien.** Eine Kategorie war bisher

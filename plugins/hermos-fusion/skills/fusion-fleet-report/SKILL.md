@@ -22,6 +22,11 @@ description: Erstellt einen Flottenüberblick über alle Fusion Edge-Geräte –
 4. Wird zusätzlich nach Sentinel-Befunden gefragt: `list_sentinel_findings`
    liefert offene Findings fleet-weit, ergänzend zu den drei Zahlen oben – nicht
    automatisch, nur wenn die Frage danach verlangt.
+5. Wird zusätzlich nach unregistrierten Geräten gefragt: `list_discovered_devices`
+   liefert den Bestand, der aktuell sendet, aber noch nicht in `list_devices`
+   auftaucht – ebenfalls nur auf Nachfrage, nicht automatisch. Eine Übernahme
+   läuft über den Skill `fusion-device-triage` (`adopt_discovered_device`),
+   nicht hier.
 
 ## Ausgabeformat
 

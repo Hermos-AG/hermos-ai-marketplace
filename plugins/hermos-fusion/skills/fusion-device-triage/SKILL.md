@@ -10,7 +10,10 @@ description: Fehlersuche an einem einzelnen Fusion Edge-Gerät, wenn es nicht re
 Diese Reihenfolge einhalten – sie geht von der breiten Diagnose zur teuren Einzelabfrage.
 
 1. **Gerät identifizieren.** Nennt die Person einen Namen statt einer ID, mit
-   `list_devices` auflösen. Bei mehreren Treffern nachfragen statt raten.
+   `list_devices` auflösen. Bei mehreren Treffern nachfragen statt raten. Gerät
+   nicht in `list_devices`, aber in `list_discovered_devices` → per
+   `adopt_discovered_device` übernehmen (liefert `409`, wenn es zwischenzeitlich
+   anderswo registriert wurde), danach QR-Registrierung für den Befehlsschlüssel.
 2. **`get_device_diagnostics`** – der Einstieg. Liefert Zustand, `lastSeenAt`,
    Broker-Lage inklusive Queue-Tiefen, letzte Befehle und Transfers, SignalR.
    Hinweis: `totalMessagesReady` ist ohne Admin-Rolle `null`. Das heisst **nicht**,
@@ -40,13 +43,15 @@ Diese Reihenfolge einhalten – sie geht von der breiten Diagnose zur teuren Ein
 | Queue-Tiefe steigt, keine Consumer | Der konsumierende Dienst ist unten |
 | `trace_device` Timeout, Diagnose sonst sauber | Agent-Strecke oder Gerät selbst |
 | `updateRequired: true` | Agent unter `minAgentVersion` – erst aktualisieren, dann weitersuchen |
+| Nicht in `list_devices`, aber in `list_discovered_devices` | Gerät sendet gültige Telemetrie, ist nur noch nicht registriert – kein Ausfall |
 
 ## Regeln
 
 - **Nur lesen.** `container_action`, `send_device_command`, `delete_device`,
-  `remove_device_image`, `abort_device_transfer`, `acknowledge_sentinel_finding`,
-  `suppress_sentinel_finding` und alles Schreibende erst nach ausdrücklicher
-  Zustimmung – und vorher benennen, was passieren wird.
+  `remove_device_image`, `abort_device_transfer`, `adopt_discovered_device`,
+  `acknowledge_sentinel_finding`, `suppress_sentinel_finding` und alles
+  Schreibende erst nach ausdrücklicher Zustimmung – und vorher benennen, was
+  passieren wird.
 - `run_sql_query` sieht alle Mandanten und braucht Admin. Für Fragen zu einem Gerät
   immer die dedizierten Werkzeuge nehmen, nie SQL.
 - Befund und Vermutung trennen. "Queue bei 1.240, keine Consumer" ist ein Befund.

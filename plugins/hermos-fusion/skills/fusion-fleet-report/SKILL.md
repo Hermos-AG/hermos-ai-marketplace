@@ -27,6 +27,13 @@ description: Erstellt einen Flottenüberblick über alle Fusion Edge-Geräte –
    auftaucht – ebenfalls nur auf Nachfrage, nicht automatisch. Eine Übernahme
    läuft über den Skill `fusion-device-triage` (`adopt_discovered_device`),
    nicht hier.
+6. Wird gefragt, ob Alarme auch ankommen: `list_notification_channels` zeigt die
+   Benachrichtigungskanäle des Mandanten (E-Mail, Teams, Webhook) mit letztem
+   Erfolg und letztem Fehler, `list_notification_outbox` die Zustellhistorie
+   (`Pending`/`Sent`/`Failed`/`Dropped`; `Dropped` = absichtlich entprellt).
+   Regeln anlegen (`create_notification_rule`) oder eine Ad-hoc-Nachricht
+   senden (`send_notification`) nur auf ausdrückliche Anweisung: echte
+   Menschen erhalten sie, Wortlaut vorher bestätigen lassen.
 
 ## Ausgabeformat
 

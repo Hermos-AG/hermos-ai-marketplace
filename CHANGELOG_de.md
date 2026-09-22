@@ -25,6 +25,13 @@ gitGraph
 
 ### Hinzugefügt
 
+- `hermos-fusion` 0.3.2: Die Skills kennen die acht Benachrichtigungs-Tools des Fusion-MCP-Servers
+  (`list_notification_channels`, `create_notification_channel`, `test_notification_channel`,
+  `list_notification_rules`, `create_notification_rule`, `delete_notification_rule`,
+  `send_notification`, `list_notification_outbox`; HER-Fusion #769). `fusion-fleet-report`
+  beantwortet die Frage, ob der Alarm rausging, aus der Outbox, `fusion-device-triage` prüft
+  Zustellungen für ein Gerät, `fusion-docs` verweist auf `Fusion.API/docs/NOTIFICATIONS.md`. Senden
+  (`send_notification`) nur auf ausdrückliche Anweisung: echte Menschen erhalten es.
 - `fusion-device-triage` und `fusion-fleet-report` decken jetzt den Discovery-Pool ab:
   `list_discovered_devices` (unregistrierte Geräte, die aktuell einen gültigen `openMetaData`-Feed
   senden, mandantenunabhängig) und `adopt_discovered_device` (übernimmt eines in den Mandanten der
@@ -176,7 +183,7 @@ gitGraph
 
 ### Behoben
 
-- In `marketplace.json` hieß der Fusion-Eintrag `HERMOS-Fusion`, im Manifest aber
+- In `marketplace.json` hiess der Fusion-Eintrag `HERMOS-Fusion`, im Manifest aber
   `hermos-fusion`. Der Eintrag folgt jetzt dem Manifest — dem Namen, den alle
   Installationsbefehle und die Doku ohnehin verwenden.
 ## [1.4.1] - 2026-08-17

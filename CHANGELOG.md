@@ -25,6 +25,13 @@ gitGraph
 
 ### Added
 
+- `hermos-fusion` 0.3.2: the skills know the eight notification tools of the Fusion MCP server
+  (`list_notification_channels`, `create_notification_channel`, `test_notification_channel`,
+  `list_notification_rules`, `create_notification_rule`, `delete_notification_rule`,
+  `send_notification`, `list_notification_outbox`; HER-Fusion #769). `fusion-fleet-report` answers
+  "did the alarm go out" from the outbox, `fusion-device-triage` checks deliveries for one device,
+  `fusion-docs` points at `Fusion.API/docs/NOTIFICATIONS.md`. Sending (`send_notification`) only on
+  explicit instruction: real people receive it.
 - `fusion-device-triage` and `fusion-fleet-report` cover the discovery pool: `list_discovered_devices`
   (unregistered devices currently sending a valid `openMetaData` feed, tenant-independent) and
   `adopt_discovered_device` (adopt one into the caller's tenant, optionally into an org unit; a device

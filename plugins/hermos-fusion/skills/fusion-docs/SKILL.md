@@ -42,6 +42,7 @@ deutschen Frage die `_de`-Fassung lesen, sonst das Original. Nicht beide laden.
 | MCP-Server: was sich geändert hat | `Fusion.McpServer/CHANGELOG.md`, `RELEASE_NOTES.md` |
 | Telemetrie-API und Metrik-Schlüssel | `Fusion.API/docs/DEVICE_TELEMETRY.md` |
 | Geräte-Logs | `Fusion.API/docs/DEVICE_LOGS.md` |
+| Benachrichtigungen nach aussen (E-Mail, Teams, Webhook), Regeln, Outbox | `Fusion.API/docs/NOTIFICATIONS.md` |
 
 ## Regeln
 

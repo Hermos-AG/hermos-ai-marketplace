@@ -4,6 +4,12 @@
 
 ## Unveröffentlicht
 
+`HERMOS-Fusion` 0.3.2: Fusion kann Alarme jetzt per E-Mail, Microsoft Teams oder Webhook zustellen,
+und die Skills nutzen die neuen MCP-Tools dafür. Der Flottenbericht sagt, ob ein Alarm tatsächlich
+rausging, die Gerätediagnose zeigt die Zustellungen für ein Gerät, und der Doku-Skill kennt die neue
+`NOTIFICATIONS.md`. Eine Ad-hoc-Nachricht wird nie auf eigene Initiative der KI gesendet; der Skill
+lässt den Wortlaut vorher bestätigen, weil echte Menschen sie erhalten.
+
 `fusion-device-triage` und `fusion-fleet-report` kennen jetzt den Discovery-Pool:
 `list_discovered_devices` listet unregistrierte Geräte, die aktuell einen gültigen
 `openMetaData`-Feed senden, und `adopt_discovered_device` übernimmt eines in den Mandanten
@@ -171,12 +177,12 @@ flowchart LR
 - **`refresh-gpu-binaries`** (Actions → Run workflow) baut beide Binaries aus dem
   eingecheckten Go-Quellcode neu, testet den Linux-Build gegen das Fake-`nvidia-smi`, zieht
   die Versionen nach und öffnet den Pull Request.
-- **Behoben:** Der Fusion-Eintrag in `marketplace.json` hieß `HERMOS-Fusion`, das Manifest
+- **Behoben:** Der Fusion-Eintrag in `marketplace.json` hiess `HERMOS-Fusion`, das Manifest
   aber `hermos-fusion` — jetzt stimmen beide überein.
 - Plugins unverändert: `hermos-fusion` 0.3.1, `HERMOS-local-GPU` 0.2.0.
 ## 1.4.1 — 17. August 2026
 
-Aufräum-Release: Der Katalog heißt jetzt **`hermos-ai-marketplace`** und liegt bei den
+Aufräum-Release: Der Katalog heisst jetzt **`hermos-ai-marketplace`** und liegt bei den
 MCP-Server-Quellen statt für sich allein. Ein privates Repository je MCP-Server.
 
 ```mermaid

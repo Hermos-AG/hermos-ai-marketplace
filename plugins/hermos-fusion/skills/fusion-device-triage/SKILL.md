@@ -26,6 +26,9 @@ Diese Reihenfolge einhalten – sie geht von der breiten Diagnose zur teuren Ein
    - Transfers: `list_device_transfers`, auf `chunksAcked`/`chunksTotal` achten.
    - Last: `get_device_performance` für die letzten 48 Stunden roh,
      `get_device_telemetry` für den längeren Verlauf.
+   - Ging ein Alarm raus? `list_notification_outbox` (Filter `state`, ggf.
+     `channelId`) zeigt, ob und wohin Sentinel-Findings zu diesem Gerät zugestellt
+     wurden; `Failed` mit `lastError` erklärt, warum niemand eine Mail bekam.
    - Bereits bekannt? `list_sentinel_findings`/`get_sentinel_finding` zeigen, ob
      für dieses Gerät schon eine Sentinel-Regel ausgelöst hat, bevor man selbst
      danach sucht; `get_device_uptime` zeigt die Neustart-Historie direkt und

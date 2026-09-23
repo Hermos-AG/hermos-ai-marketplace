@@ -15,7 +15,7 @@
       "name": "HERMOS-Fusion",
       "source": "./plugins/hermos-fusion",
       "description": "Edge-Geräteverwaltung mit HERMOS Fusion: Flottenbericht, Gerätediagnose und Zugriff auf die Fusion-Projektdokumentation",
-      "version": "0.3.2",
+      "version": "0.3.3",
       "category": "operations",
       "keywords": ["hermos", "fusion", "mcp", "edge", "iot", "monitoring", "devops"]
     },

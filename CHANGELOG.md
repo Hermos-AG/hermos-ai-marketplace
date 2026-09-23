@@ -25,6 +25,10 @@ gitGraph
 
 ### Added
 
+- `hermos-fusion` 0.3.3: the skills know the daily digest of the Fusion notification rules
+  (`digestSchedule` such as `07:00|Europe/Berlin`, history state `Bundled` with `digestRowId`),
+  the new `update_notification_rule` and the `isActive` parameter of `create_notification_rule`
+  (HER-Fusion #796, #800). `fusion-device-triage` says Fusion.Sentinel, not Sentinel.
 - `hermos-fusion` 0.3.2: the skills know the eight notification tools of the Fusion MCP server
   (`list_notification_channels`, `create_notification_channel`, `test_notification_channel`,
   `list_notification_rules`, `create_notification_rule`, `delete_notification_rule`,

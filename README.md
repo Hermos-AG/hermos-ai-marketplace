@@ -191,9 +191,6 @@ If the client refuses automatic registration, enter the client ID
 `f44473d3-115d-4c76-ba23-71655a672c97` in the connector's advanced settings. There is no
 client secret.
 
-For headless use a personal access token (`fpat_…`) works instead, passed as an
-`Authorization` header. **Never commit one to this repository.**
-
 Signed in but no data visible? The first login only creates a basic account. A Fusion
 admin still has to assign org units and roles.
 

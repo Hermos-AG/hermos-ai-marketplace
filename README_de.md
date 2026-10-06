@@ -194,9 +194,6 @@ Verweigert der Client die automatische Registrierung, die Client-ID
 `f44473d3-115d-4c76-ba23-71655a672c97` in den erweiterten Einstellungen des Konnektors
 eintragen. Ein Client Secret gibt es nicht.
 
-Für den Betrieb ohne Browser funktioniert stattdessen ein Personal Access Token
-(`fpat_…`) als `Authorization`-Header. **Niemals in dieses Repository einchecken.**
-
 Angemeldet, aber keine Daten sichtbar? Die erste Anmeldung legt nur ein Basiskonto an.
 Org-Units und Rollen muss ein Fusion-Admin noch zuweisen.
 

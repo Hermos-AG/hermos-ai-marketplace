@@ -300,9 +300,6 @@ The endpoint uses Entra ID. The client opens a browser, you sign in with your no
 HERMOS account, and every tool call runs with the same tenant and roles you have in the
 Fusion web UI. Nothing goes into `.mcp.json` beyond the URL.
 
-Personal access tokens (`fpat_…`) exist for headless use — CI, machines without a
-browser. Those belong in a local configuration, never in this repository.
-
 ### Read-only by default
 
 Fusion exposes destructive tools: deleting devices, container actions, removing images,

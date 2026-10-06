@@ -24,6 +24,14 @@ Diese Reihenfolge einhalten – sie geht von der breiten Diagnose zur teuren Ein
    - Container: `list_live_containers` gegen `list_containers` (Soll gegen Ist),
      bei Auffälligkeit `get_container_logs`.
    - Transfers: `list_device_transfers`, auf `chunksAcked`/`chunksTotal` achten.
+   - Dateien auf dem Gerät (Agent ab 2.15.0): `list_device_directory` zeigt einen
+     Ordner des Host-Dateisystems innerhalb der erlaubten Wurzeln (leerer Pfad =
+     die Wurzeln; `/var/log` ist der übliche Einstieg). `DeviceTimeout` bei sonst
+     gesundem Gerät heisst meist: Agent älter als 2.15.0. Eine Logdatei holen:
+     `download_device_file`; mehrere Dateien oder einen Ordner als ZIP:
+     `download_device_files` – beides wartet auf das Gerät und liefert kleine
+     Ergebnisse inline, grosse als `contentUrl`. Laufende Downloads:
+     `get_device_downloads`.
    - Last: `get_device_performance` für die letzten 48 Stunden roh,
      `get_device_telemetry` für den längeren Verlauf.
    - Ging ein Alarm raus? `list_notification_outbox` (Filter `state`, ggf.
@@ -53,9 +61,12 @@ Diese Reihenfolge einhalten – sie geht von der breiten Diagnose zur teuren Ein
 
 - **Nur lesen.** `container_action`, `send_device_command`, `delete_device`,
   `remove_device_image`, `abort_device_transfer`, `adopt_discovered_device`,
-  `acknowledge_sentinel_finding`, `suppress_sentinel_finding` und alles
-  Schreibende erst nach ausdrücklicher Zustimmung – und vorher benennen, was
-  passieren wird.
+  `acknowledge_sentinel_finding`, `suppress_sentinel_finding`,
+  `start_device_download`, `download_device_file`, `download_device_files`,
+  `abort_device_download` und alles Schreibende erst nach ausdrücklicher
+  Zustimmung – und vorher benennen, was passieren wird. Ein Download liest zwar
+  nur auf dem Gerät, belegt aber dort Platte und Bandbreite und legt eine Kopie
+  der Datei in der Plattform ab; `list_device_directory` ist reines Lesen.
 - `run_sql_query` sieht alle Mandanten und braucht Admin. Für Fragen zu einem Gerät
   immer die dedizierten Werkzeuge nehmen, nie SQL.
 - Befund und Vermutung trennen. "Queue bei 1.240, keine Consumer" ist ein Befund.

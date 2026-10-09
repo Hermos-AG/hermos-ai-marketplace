@@ -294,7 +294,7 @@ Platzhalter ersetzt durch den echten Werkzeugsatz von Fusion, live vom MCP-Serve
 ### Schutzplanke
 
 Alle drei Skills lesen nur. Werkzeuge, die etwas verändern, brauchen eine ausdrückliche
-Bestätigung, und `run_sql_query` ist für Gerätefragen tabu, weil es alle Mandanten sieht.
+Bestätigung, und `run_sql_query` ist für Gerätefragen tabu.
 
 ## [1.0.0] - 2026-08-13
 

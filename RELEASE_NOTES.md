@@ -304,8 +304,7 @@ Fusion web UI. Nothing goes into `.mcp.json` beyond the URL.
 
 Fusion exposes destructive tools: deleting devices, container actions, removing images,
 aborting transfers. All three skills are read-only and require explicit confirmation
-before anything changes. `run_sql_query` spans all tenants and is excluded from device
-questions entirely.
+before anything changes. `run_sql_query` is excluded from device questions entirely.
 
 ### Upgrade from 1.0.0
 

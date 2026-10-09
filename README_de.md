@@ -25,7 +25,7 @@ sieht die unten aufgeführten Plugins.
 
 Alle Skills **lesen nur**. Fusion bietet auch zerstörende Werkzeuge – Geräte löschen,
 Container-Aktionen, Transfers abbrechen. Die verlangen eine ausdrückliche Bestätigung.
-`run_sql_query` sieht alle Mandanten und ist für Gerätefragen ausgeschlossen.
+`run_sql_query` ist für Gerätefragen ausgeschlossen.
 
 **`HERMOS-local-GPU` 0.2.0** – die eigene NVIDIA-GPU des Entwicklers als MCP-Server
 (Projekt `gpu-mcp`: ein einzelnes, abhängigkeitsfreies Go-Binary, JSON-RPC über stdio,

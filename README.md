@@ -25,7 +25,7 @@ plugins listed below.
 
 All skills are **read-only**. Fusion also exposes destructive tools — deleting devices,
 container actions, aborting transfers. Those require explicit confirmation.
-`run_sql_query` spans all tenants and is excluded from device questions.
+`run_sql_query` is excluded from device questions.
 
 **`HERMOS-local-GPU` 0.2.0** — the developer's own NVIDIA GPU as an MCP server
 (project `gpu-mcp`: a single dependency-free Go binary, JSON-RPC over stdio, no

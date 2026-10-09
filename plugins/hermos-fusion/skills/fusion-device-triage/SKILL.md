@@ -67,8 +67,8 @@ Diese Reihenfolge einhalten – sie geht von der breiten Diagnose zur teuren Ein
   Zustimmung – und vorher benennen, was passieren wird. Ein Download liest zwar
   nur auf dem Gerät, belegt aber dort Platte und Bandbreite und legt eine Kopie
   der Datei in der Plattform ab; `list_device_directory` ist reines Lesen.
-- `run_sql_query` sieht alle Mandanten und braucht Admin. Für Fragen zu einem Gerät
-  immer die dedizierten Werkzeuge nehmen, nie SQL.
+- `run_sql_query` braucht Admin-Rechte. Für Fragen zu einem Gerät immer die
+  dedizierten Werkzeuge nehmen, nie SQL.
 - Befund und Vermutung trennen. "Queue bei 1.240, keine Consumer" ist ein Befund.
   "Der Worker ist abgestürzt" ist eine Vermutung – als solche kennzeichnen.
 - Am Ende ein konkreter nächster Schritt, keine Liste von Möglichkeiten.

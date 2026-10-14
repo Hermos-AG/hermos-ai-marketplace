@@ -320,8 +320,7 @@ denselben Rollen wie im Fusion-Web-UI. In die `.mcp.json` gehört nichts ausser 
 
 Fusion bietet auch zerstörende Werkzeuge: Geräte löschen, Container-Aktionen, Images
 entfernen, Transfers abbrechen. Alle drei Skills lesen nur und verlangen eine
-ausdrückliche Bestätigung, bevor sich etwas ändert. `run_sql_query` ist für Gerätefragen ganz
-ausgeschlossen.
+ausdrückliche Bestätigung, bevor sich etwas ändert.
 
 ### Umstieg von 1.0.0
 

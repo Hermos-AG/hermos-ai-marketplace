@@ -286,8 +286,7 @@ Placeholders replaced with the actual Fusion tool set, queried live from the MCP
 
 ### Guardrail
 
-All three skills are read-only. Tools that change state require explicit confirmation,
-and `run_sql_query` is off-limits for device questions.
+All three skills are read-only. Tools that change state require explicit confirmation.
 
 ## [1.0.0] - 2026-08-13
 

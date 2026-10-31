@@ -4,6 +4,17 @@
 
 ## Unveröffentlicht
 
+`HERMOS-Fusion` 0.3.4: Der Fusion-MCP-Server hat die Beschreibungen seiner Tools für KI-Clients
+neu geschrieben, und die Skills sagen jetzt dasselbe. Die Gerätediagnose unterscheidet die zwei
+Bedeutungen von `containerId`, nennt die `container_action`-Nutzlast, weiss, welche Abfragen
+`null` liefern und welche einen 404-Fehler, liest `get_device_performance` als Fenster von bis zu
+31 Tagen und gibt Fusion.API-Fehler mit Status und Code so weiter, wie sie kommen. Die Übernahme
+eines Geräts aus dem Discovery-Pool ist jetzt ein eigener Abschnitt: Eine Pool-Zeile mit
+`hasEnrolment: true` bringt ihren Befehlsschlüssel mit, die Adopt-Antwort
+`cmdAuthKeyEnrolment: pending` wird innerhalb von Sekunden zu `enrolled` oder `probe-failed`, und
+nur `none` oder `probe-failed` schicken einen noch zur QR-Registrierung. Der Flottenbericht zählt
+Geräte ohne Befehlsschlüssel, `/fusion-status` zeigt den Schlüsselzustand.
+
 `HERMOS-Fusion` 0.3.2: Fusion kann Alarme jetzt per E-Mail, Microsoft Teams oder Webhook zustellen,
 und die Skills nutzen die neuen MCP-Tools dafür. Der Flottenbericht sagt, ob ein Alarm tatsächlich
 rausging, die Gerätediagnose zeigt die Zustellungen für ein Gerät, und der Doku-Skill kennt die neue
@@ -13,9 +24,8 @@ lässt den Wortlaut vorher bestätigen, weil echte Menschen sie erhalten.
 `fusion-device-triage` und `fusion-fleet-report` kennen jetzt den Discovery-Pool:
 `list_discovered_devices` listet unregistrierte Geräte, die aktuell einen gültigen
 `openMetaData`-Feed senden, und `adopt_discovered_device` übernimmt eines in den Mandanten
-der aufrufenden Person. Ein so gefundenes Gerät braucht danach noch die QR-Registrierung
-(oder `update_device` mit `cmdAuthKey`), bevor es einen Befehlsschlüssel hat – Telemetrie
-funktioniert sofort. Kein Versionssprung des Plugins für diese Änderung.
+der aufrufenden Person. Telemetrie funktioniert sofort; der Befehlsschlüssel folgt wie oben
+beschrieben.
 
 ## 1.6.2 — 26. August 2026
 

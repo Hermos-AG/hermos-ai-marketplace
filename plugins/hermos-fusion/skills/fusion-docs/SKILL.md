@@ -25,6 +25,7 @@ deutschen Frage die `_de`-Fassung lesen, sonst das Original. Nicht beide laden.
 
 | Thema | Datei |
 |-------|-------|
+| Was Fusion ist: Herkunft, Bausteine, Rollen, Betrieb | `docs/fusion.md` |
 | Gesamtarchitektur | `Fusion.API/docs/ARCHITECTURE.md` |
 | Anmeldung, Token, Rollen | `Fusion.API/docs/AUTH.md` |
 | Entra-ID-Einrichtung | `Fusion.API/docs/ENTRA_ID_SETUP.md` |
@@ -37,12 +38,13 @@ deutschen Frage die `_de`-Fassung lesen, sonst das Original. Nicht beide laden.
 | Deployment | `Fusion.API/docs/DEPLOY_RUNBOOK.md` |
 | MCP-Client anbinden | `Fusion.McpServer/docs/MCP_CLIENT_SETUP.md` |
 | MCP-Server: Überblick, Tool-Katalog, Betrieb | `Fusion.McpServer/README.md` |
-| MCP-Server: OAuth-Stack, Token-Tausch, PATs | `Fusion.McpServer/docs/OAUTH.md` |
-| MCP-Server: Architektur, Anfrageweg, neues Tool anlegen | `Fusion.McpServer/docs/ARCHITECTURE.md` (ab nächstem Server-Build) |
+| MCP-Server: OAuth-Stack, Token-Tausch | `Fusion.McpServer/docs/OAUTH.md` |
+| MCP-Server: Architektur, Anfrageweg, neues Tool anlegen | `Fusion.McpServer/docs/ARCHITECTURE.md` |
 | MCP-Server: was sich geändert hat | `Fusion.McpServer/CHANGELOG.md`, `RELEASE_NOTES.md` |
 | Telemetrie-API und Metrik-Schlüssel | `Fusion.API/docs/DEVICE_TELEMETRY.md` |
 | Geräte-Logs | `Fusion.API/docs/DEVICE_LOGS.md` |
 | Benachrichtigungen nach aussen (E-Mail, Teams, Webhook), Regeln, Outbox | `Fusion.API/docs/NOTIFICATIONS.md` |
+| KI-Assistent in der Fusion-Web-App, Werkzeug-Freigabeliste | `Fusion.API/docs/AI_CHAT.md` |
 
 ## Regeln
 

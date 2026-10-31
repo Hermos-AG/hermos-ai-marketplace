@@ -10,7 +10,7 @@ sieht die unten aufgeführten Plugins.
 
 ## Was drin ist
 
-**`HERMOS-Fusion` 0.3.2** – Edge-Geräteverwaltung über den Fusion-MCP-Server.
+**`HERMOS-Fusion` 0.3.4** – Edge-Geräteverwaltung über den Fusion-MCP-Server.
 
 | Skill | Wofür |
 |-------|-------|
@@ -112,9 +112,9 @@ Unternehmen dienen; sie sagen, wo der Server läuft:
 
 `tnt`, `fis` und `rfid` sind für die gleichnamigen Fachbereiche reserviert und
 noch ohne Einträge. Wer dort das erste Plugin listet, ersetzt in dieser Tabelle
-den bloßen Bereichsnamen durch eine Zeile dazu, was hineingehört.
+den blossen Bereichsnamen durch eine Zeile dazu, was hineingehört.
 
-Eine Kategorie ergänzen oder umbenennen heißt: `ALLOWED_CATEGORIES` in
+Eine Kategorie ergänzen oder umbenennen heisst: `ALLOWED_CATEGORIES` in
 `scripts/validate_catalog.py` **und** diese Tabelle im selben Pull Request ändern.
 
 ## Wo dieses Repo liegt — und wo die Quellen liegen
@@ -134,7 +134,7 @@ Organisation `Hermos-AG`:
 Quell-Repo, der Release-Stand wird hierher kopiert, Version hochgezählt, Pull Request auf.
 Übersicht aller Repositories: `D:\DEV\HER\HER-MCP\README.md`.
 
-Dieses Repository hieß bis zum 17.08.2026 `HER-Claude-Catalog`; GitHub leitet die alte URL
+Dieses Repository hiess bis zum 17.08.2026 `HER-Claude-Catalog`; GitHub leitet die alte URL
 weiter, bitte trotzdem `Hermos-AG/hermos-ai-marketplace` verwenden.
 ## Aufbau des Repositorys
 

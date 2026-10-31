@@ -17,6 +17,14 @@ description: Erstellt einen Flottenüberblick über alle Fusion Edge-Geräte –
    - **Agent-Stand** über `agentVersion`, `updateAvailable`, `updateRequired`.
      `updateRequired: true` bedeutet, der Agent liegt unter `minAgentVersion` –
      das ist ein Handlungspunkt, kein Hinweis.
+   - **Befehlsschlüssel** über `hasCmdAuthKey` und `cmdAuthKeyEnrolment`
+     (`none | pending | enrolled | probe-failed`). Ein Gerät mit
+     `hasCmdAuthKey: false` liefert Telemetrie, nimmt aber keine Befehle,
+     Container-Aktionen oder Transfers an. `pending` heisst: die API bestätigt
+     gerade einen mitgelieferten Schlüssel per Probe (wird innerhalb von
+     Sekunden `enrolled` oder `probe-failed`); `none` und `probe-failed`
+     heissen: QR-Registrierung steht aus. Die Geräte ohne Schlüssel zählen und
+     je Zustand nennen.
    - **Zuordnung** über `orgUnitName` und `tags`.
 3. Gruppieren nach Org-Unit. Innerhalb der Gruppe die Problemfälle nach oben.
 4. Wird zusätzlich nach Sentinel-Befunden gefragt: `list_sentinel_findings`
@@ -24,9 +32,11 @@ description: Erstellt einen Flottenüberblick über alle Fusion Edge-Geräte –
    automatisch, nur wenn die Frage danach verlangt.
 5. Wird zusätzlich nach unregistrierten Geräten gefragt: `list_discovered_devices`
    liefert den Bestand, der aktuell sendet, aber noch nicht in `list_devices`
-   auftaucht – ebenfalls nur auf Nachfrage, nicht automatisch. Eine Übernahme
-   läuft über den Skill `fusion-device-triage` (`adopt_discovered_device`),
-   nicht hier.
+   auftaucht – ebenfalls nur auf Nachfrage, nicht automatisch. Jede Zeile trägt
+   `hasEnrolment`: `true` heisst, das Gerät hat seinen Befehlsschlüssel schon
+   verschlüsselt mitgeliefert und bekommt ihn bei der Übernahme in der Regel
+   ohne QR-Registrierung. Eine Übernahme läuft über den Skill
+   `fusion-device-triage` (`adopt_discovered_device`), nicht hier.
 6. Wird gefragt, ob Alarme auch ankommen: `list_notification_channels` zeigt die
    Benachrichtigungskanäle des Mandanten (E-Mail, Teams, Webhook) mit letztem
    Erfolg und letztem Fehler, `list_notification_outbox` die Zustellhistorie
@@ -43,14 +53,16 @@ description: Erstellt einen Flottenüberblick über alle Fusion Edge-Geräte –
 
 ## Ausgabeformat
 
-Kurzer Vorspann mit drei Zahlen: Gesamtbestand, davon offline, davon Agent-Update
-erforderlich. Danach eine Tabelle je Org-Unit:
+Kurzer Vorspann mit vier Zahlen: Gesamtbestand, davon offline, davon Agent-Update
+erforderlich, davon ohne Befehlsschlüssel (`hasCmdAuthKey: false`, mit
+`cmdAuthKeyEnrolment` je Gerät). Danach eine Tabelle je Org-Unit:
 
-| Gerät | Zustand | Agent | Zuletzt gesehen | Tags |
+| Gerät | Zustand | Agent | Schlüssel | Zuletzt gesehen | Tags |
 
-Am Schluss ein Abschnitt "Handlungsbedarf" – nur Geräte mit `updateRequired: true`
-oder mehr als 24 Stunden ohne Lebenszeichen. Ist die Liste leer, das ausdrücklich
-sagen statt den Abschnitt wegzulassen.
+Am Schluss ein Abschnitt "Handlungsbedarf" – nur Geräte mit `updateRequired: true`,
+mit `hasCmdAuthKey: false` (ausser `cmdAuthKeyEnrolment: pending`, das löst sich
+von selbst) oder mehr als 24 Stunden ohne Lebenszeichen. Ist die Liste leer, das
+ausdrücklich sagen statt den Abschnitt wegzulassen.
 
 ## Regeln
 
@@ -59,4 +71,7 @@ sagen statt den Abschnitt wegzulassen.
 - Keine Zahlen schätzen. Fehlende Felder (`deviceType`, `location`, `hostname` sind
   oft leer) als "–" ausweisen, nicht erfinden.
 - `hasInternet: null` heisst "nie geprüft", nicht "kein Internet". Unterscheiden.
+- `pageSize` ausserhalb 1–200 fällt still auf 50 zurück – dann stimmt
+  `totalCount` nicht mit der eingesammelten Anzahl überein. Im Zweifel die
+  Seitengrösse prüfen, die die Antwort in `pageSize` zurückmeldet.
 - Nur lesen. Dieser Skill ruft nie ein Werkzeug auf, das etwas verändert.

@@ -71,7 +71,7 @@ ausdrücklich sagen statt den Abschnitt wegzulassen.
 - Keine Zahlen schätzen. Fehlende Felder (`deviceType`, `location`, `hostname` sind
   oft leer) als "–" ausweisen, nicht erfinden.
 - `hasInternet: null` heisst "nie geprüft", nicht "kein Internet". Unterscheiden.
-- `pageSize` ausserhalb 1–200 fällt still auf 50 zurück – dann stimmt
-  `totalCount` nicht mit der eingesammelten Anzahl überein. Im Zweifel die
-  Seitengrösse prüfen, die die Antwort in `pageSize` zurückmeldet.
+- `pageSize` ausserhalb 1–200 fällt still auf 50 zurück. Deshalb nach `hasMore`
+  blättern statt mit 200 je Seite zu rechnen, und die Seitengrösse nehmen, die
+  die Antwort in `pageSize` zurückmeldet.
 - Nur lesen. Dieser Skill ruft nie ein Werkzeug auf, das etwas verändert.

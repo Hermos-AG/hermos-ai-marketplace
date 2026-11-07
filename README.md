@@ -10,7 +10,7 @@ plugins listed below.
 
 ## What is in it
 
-**`HERMOS-Fusion` 0.3.4** — edge device management through the Fusion MCP server.
+**`HERMOS-Fusion` 0.3.5** — edge device management through the Fusion MCP server.
 
 | Skill | What it does |
 |-------|--------------|

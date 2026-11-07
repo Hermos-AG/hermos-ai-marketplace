@@ -49,6 +49,16 @@ gitGraph
 
 ### Hinzugefügt
 
+- `hermos-fusion` 0.3.5: Die Skills kennen den Fusion.Sentinel-Regelschalter des Fusion-MCP-Servers
+  (HER-Fusion #861, #864). `list_sentinel_rules` liefert je Regel und Scope einen Eintrag (`tenant`,
+  `global`, `default`), `enabled` gegenüber `active`/`inactiveReason`, `threshold` 0 als
+  Engine-Default von 3 Vorkommen und die Säule nach Präfix der Regel-Id; das neue `set_sentinel_rule`
+  schaltet eine Regel für den Mandanten der aufrufenden Person aus oder ein und setzt die Schwelle,
+  ein Schreibzugriff mit mandantenweiter Wirkung (keine neuen Findings, keine Benachrichtigungen,
+  offene Findings lösen sich binnen Minuten auf), deshalb führt `fusion-device-triage` es unter den
+  Tools, die ausdrückliche Zustimmung brauchen, und lässt das Modell die aktuelle Schwelle mitgeben.
+  `fusion-fleet-report` liest die Regeleinstellungen, wenn eine Regel still bleibt, die greifen
+  müsste; `fusion-docs` verweist auf `Fusion.Sentinel/docs/RULES.md` und `OPERATIONS.md`.
 - `hermos-fusion` 0.3.3: Die Skills kennen die Tagesübersicht der Fusion-Benachrichtigungsregeln
   (`digestSchedule` wie `07:00|Europe/Berlin`, Historienzustand `Bundled` mit `digestRowId`), das
   neue `update_notification_rule` und den Parameter `isActive` von `create_notification_rule`

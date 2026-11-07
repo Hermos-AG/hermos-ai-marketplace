@@ -4,6 +4,15 @@
 
 ## Unveröffentlicht
 
+`HERMOS-Fusion` 0.3.5: Fusion.Sentinel-Regeln lassen sich über MCP aus- und einschalten, und die
+Skills wissen, wie. `list_sentinel_rules` sagt jetzt, ob eine Einstellung die eigene des Mandanten,
+die Vorgabe aller Mandanten oder der eingebaute Default ist, und `set_sentinel_rule` schaltet eine
+Regel für den eigenen Mandanten aus oder ein und setzt, wie viele Vorkommen ein Finding braucht. Die
+Gerätediagnose behandelt es als Schreibzugriff, der Zustimmung braucht, nennt die Folge (keine neuen
+Findings, keine Benachrichtigungen, offene Findings lösen sich binnen Minuten auf) und behält die
+vorhandene Schwelle; der Flottenbericht liest die Regeleinstellungen, wenn eine Regel still bleibt,
+die greifen müsste. Braucht einen Fusion-MCP-Server, der `set_sentinel_rule` anbietet.
+
 `HERMOS-Fusion` 0.3.4: Der Fusion-MCP-Server hat die Beschreibungen seiner Tools für KI-Clients
 neu geschrieben, und die Skills sagen jetzt dasselbe. Die Gerätediagnose unterscheidet die zwei
 Bedeutungen von `containerId`, nennt die `container_action`-Nutzlast, weiss, welche Abfragen

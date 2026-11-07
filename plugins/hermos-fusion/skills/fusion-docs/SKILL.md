@@ -44,6 +44,7 @@ deutschen Frage die `_de`-Fassung lesen, sonst das Original. Nicht beide laden.
 | Telemetrie-API und Metrik-Schlüssel | `Fusion.API/docs/DEVICE_TELEMETRY.md` |
 | Geräte-Logs | `Fusion.API/docs/DEVICE_LOGS.md` |
 | Benachrichtigungen nach aussen (E-Mail, Teams, Webhook), Regeln, Outbox | `Fusion.API/docs/NOTIFICATIONS.md` |
+| Fusion.Sentinel: Regelkatalog, Schwellen, Regelschalter je Mandant | `Fusion.Sentinel/docs/RULES.md`, `OPERATIONS.md` |
 | KI-Assistent in der Fusion-Web-App, Werkzeug-Freigabeliste | `Fusion.API/docs/AI_CHAT.md` |
 
 ## Regeln

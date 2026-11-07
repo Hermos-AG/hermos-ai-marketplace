@@ -27,9 +27,14 @@ description: Erstellt einen Flottenüberblick über alle Fusion Edge-Geräte –
      je Zustand nennen.
    - **Zuordnung** über `orgUnitName` und `tags`.
 3. Gruppieren nach Org-Unit. Innerhalb der Gruppe die Problemfälle nach oben.
-4. Wird zusätzlich nach Sentinel-Befunden gefragt: `list_sentinel_findings`
+4. Wird zusätzlich nach Fusion.Sentinel-Befunden gefragt: `list_sentinel_findings`
    liefert offene Findings fleet-weit, ergänzend zu den drei Zahlen oben – nicht
-   automatisch, nur wenn die Frage danach verlangt.
+   automatisch, nur wenn die Frage danach verlangt. Fehlen Findings zu einer
+   Regel, die greifen müsste, `list_sentinel_rules` lesen: `enabled: false`
+   heisst abgeschaltet – als eigene Zeile des Mandanten (`scope` `tenant`) oder
+   als Vorgabe aller Mandanten (`global`) –, `active: false` mit `inactiveReason`
+   heisst, die Regel kann auf dieser Installation nicht auslösen. Umschalten
+   (`set_sentinel_rule`) gehört in den Skill `fusion-device-triage`, nicht hier.
 5. Wird zusätzlich nach unregistrierten Geräten gefragt: `list_discovered_devices`
    liefert den Bestand, der aktuell sendet, aber noch nicht in `list_devices`
    auftaucht – ebenfalls nur auf Nachfrage, nicht automatisch. Jede Zeile trägt

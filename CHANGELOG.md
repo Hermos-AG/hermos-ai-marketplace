@@ -48,6 +48,15 @@ gitGraph
 
 ### Added
 
+- `hermos-fusion` 0.3.5: the skills know the Fusion.Sentinel rule switch of the Fusion MCP server
+  (HER-Fusion #861, #864). `list_sentinel_rules` returns one entry per rule and scope (`tenant`,
+  `global`, `default`), `enabled` versus `active`/`inactiveReason`, `threshold` 0 as the engine
+  default of 3 occurrences and the pillar by rule-id prefix; the new `set_sentinel_rule` switches a
+  rule off or on for the caller's tenant and sets the threshold, a write with tenant-wide effect (no
+  new findings, no notifications, open findings resolve within minutes), so `fusion-device-triage`
+  lists it among the tools that need explicit consent and tells the model to pass the current
+  threshold. `fusion-fleet-report` reads the rule settings when a rule that should fire stays
+  silent; `fusion-docs` points at `Fusion.Sentinel/docs/RULES.md` and `OPERATIONS.md`.
 - `hermos-fusion` 0.3.3: the skills know the daily digest of the Fusion notification rules
   (`digestSchedule` such as `07:00|Europe/Berlin`, history state `Bundled` with `digestRowId`),
   the new `update_notification_rule` and the `isActive` parameter of `create_notification_rule`

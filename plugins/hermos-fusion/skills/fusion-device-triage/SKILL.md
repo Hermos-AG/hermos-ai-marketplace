@@ -82,6 +82,15 @@ Diese Reihenfolge einhalten – sie geht von der breiten Diagnose zur teuren Ein
      Sichtbarkeit" und „sichtbar, aber Sentinel hat noch keine Uptime erfasst"
      ab. Also melden, dass keine Uptime-Daten vorliegen — nicht, dass das Gerät
      fehlt.
+   - Kein Finding trotz offensichtlichem Problem? `list_sentinel_rules` zeigt je
+     Regel die wirksame Einstellung: `scope` `tenant` ist die eigene Zeile des
+     Mandanten, `global` die Vorgabe aller Mandanten, `default` der eingebaute
+     Wert; `enabled: false` heisst abgeschaltet, `active: false` mit
+     `inactiveReason` heisst, die Regel kann auf dieser Installation nicht
+     auslösen; `threshold` 0 ist der Engine-Default von 3 Vorkommen, bevor ein
+     Finding öffnet. Die Säule steht nicht im Eintrag, sie folgt aus dem Präfix
+     der Regel-Id (`license.` = License, `security.` = Security, `sentinel.` =
+     Self, alles andere Compliance).
 
 ## Übernahme aus dem Discovery-Pool
 
@@ -138,10 +147,16 @@ Befehlsschlüssel bereits verschlüsselt mitgeliefert.
 
 - **Nur lesen.** `container_action`, `send_device_command`, `delete_device`,
   `remove_device_image`, `abort_device_transfer`, `adopt_discovered_device`,
-  `acknowledge_sentinel_finding`, `suppress_sentinel_finding`,
+  `acknowledge_sentinel_finding`, `suppress_sentinel_finding`, `set_sentinel_rule`,
   `start_device_download`, `download_device_file`, `download_device_files`,
   `abort_device_download` und alles Schreibende erst nach ausdrücklicher
-  Zustimmung – und vorher benennen, was passieren wird. Ein Download liest zwar
+  Zustimmung – und vorher benennen, was passieren wird. `set_sentinel_rule`
+  schaltet eine Fusion.Sentinel-Regel für den ganzen Mandanten aus oder ein und
+  setzt ihre Vorkommensschwelle: abgeschaltet heisst keine neuen Findings und
+  keine Benachrichtigungen, offene Findings lösen sich binnen Minuten auf. Die
+  Schwelle immer mitgeben (vorher `list_sentinel_rules`), sonst fällt sie auf
+  den Default 3 zurück; ohne das Recht `Sentinel.ManageRules` antwortet die API
+  mit 403, eine unbekannte Regel-Id mit `404 UnknownRule`. Ein Download liest zwar
   nur auf dem Gerät, belegt aber dort Platte und Bandbreite und legt eine Kopie
   der Datei in der Plattform ab; `list_device_directory` ist reines Lesen.
   `send_device_command` führt jeden Text, der kein Agent-Befehl ist, als

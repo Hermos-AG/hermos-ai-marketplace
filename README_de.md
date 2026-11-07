@@ -10,7 +10,7 @@ sieht die unten aufgeführten Plugins.
 
 ## Was drin ist
 
-**`HERMOS-Fusion` 0.3.4** – Edge-Geräteverwaltung über den Fusion-MCP-Server.
+**`HERMOS-Fusion` 0.3.5** – Edge-Geräteverwaltung über den Fusion-MCP-Server.
 
 | Skill | Wofür |
 |-------|-------|

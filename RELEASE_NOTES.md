@@ -4,6 +4,14 @@
 
 ## Unreleased
 
+`HERMOS-Fusion` 0.3.5: Fusion.Sentinel rules can be switched off and on over MCP, and the skills
+know how. `list_sentinel_rules` now tells whether a setting is the tenant's own, the default of
+all tenants or the built-in default, and `set_sentinel_rule` switches a rule off or on for your
+tenant and sets how many occurrences a finding needs. The device triage treats it as a write that
+needs your consent, names the consequence (no new findings, no notifications, open findings resolve
+within minutes) and keeps the threshold you have; the fleet report reads the rule settings when a
+rule that should fire stays silent. Needs a Fusion MCP server that offers `set_sentinel_rule`.
+
 `HERMOS-Fusion` 0.3.4: the Fusion MCP server rewrote the descriptions of its tools for AI
 clients, and the skills now say the same thing. The device triage tells the two meanings of
 `containerId` apart, states the `container_action` payload, knows which lookups answer `null`

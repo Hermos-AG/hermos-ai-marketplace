@@ -23,6 +23,29 @@ gitGraph
 
 ## [Unreleased]
 
+### Changed
+
+- `hermos-fusion` 0.3.4: the skills follow the rewritten descriptions of the Fusion MCP tools
+  (HER-Fusion #518, #491) and the command-key enrolment (HER-Fusion #240). `fusion-device-triage`
+  names the two meanings of `containerId` (`get_container` takes the GUID `id` of a `list_containers`
+  row, `container_action` and `get_container_logs` the Docker id from `list_live_containers`), the
+  `container_action` payload `{"action":"Start|Stop|Restart|Remove"}`, which lookups answer `null`
+  (`get_device`, `get_container`, `get_device_command_task`) and which answer a 404 error, the tool
+  error format `Fusion.API answered {status} {code}: {message}`, `list_containers` as desired state
+  versus `list_live_containers` as live state with `success`/`error`, `get_device_performance` as a
+  window of up to 31 days with bucketing instead of "the last 48 hours", `query_device` for the
+  parameterless agent questions, and the diagnostics fields `lastSeenUtc`/`status`; the null
+  `totalMessagesReady` is now tied to elevated platform rights, not to the retired Admin role. New
+  section "adoption from the discovery pool": `list_discovered_devices` rows carry `hasEnrolment`,
+  `adopt_discovered_device` answers `cmdAuthKeyEnrolment: pending`, which turns into `enrolled` or
+  `probe-failed` within seconds (re-read with `get_device`); `none` means no probe runs and the QR
+  registration remains the way to a command key. `fusion-fleet-report` counts devices without a
+  command key (`hasCmdAuthKey`, `cmdAuthKeyEnrolment`) and names `hasEnrolment` on pool rows;
+  `/fusion-status` shows the key state. `fusion-docs` points at `docs/fusion.md` and
+  `Fusion.API/docs/AI_CHAT.md`, drops the token wording from the OAuth row and no longer marks
+  `Fusion.McpServer/docs/ARCHITECTURE.md` as pending. README (en + de) names 0.3.4 instead of a
+  stale 0.3.2.
+
 ### Added
 
 - `hermos-fusion` 0.3.3: the skills know the daily digest of the Fusion notification rules
@@ -39,7 +62,7 @@ gitGraph
 - `fusion-device-triage` and `fusion-fleet-report` cover the discovery pool: `list_discovered_devices`
   (unregistered devices currently sending a valid `openMetaData` feed, tenant-independent) and
   `adopt_discovered_device` (adopt one into the caller's tenant, optionally into an org unit; a device
-  already registered elsewhere answers `409`). Ships with the next `Fusion.McpServer` deploy.
+  already registered elsewhere answers `409 DeviceIdExists`).
 
 ### Planned
 

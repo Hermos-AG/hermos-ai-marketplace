@@ -23,6 +23,30 @@ gitGraph
 
 ## [Unveröffentlicht]
 
+### Geändert
+
+- `hermos-fusion` 0.3.4: Die Skills folgen den neu geschriebenen Beschreibungen der Fusion-MCP-Tools
+  (HER-Fusion #518, #491) und der Befehlsschlüssel-Registrierung (HER-Fusion #240).
+  `fusion-device-triage` nennt die zwei Bedeutungen von `containerId` (`get_container` nimmt die
+  GUID `id` einer `list_containers`-Zeile, `container_action` und `get_container_logs` die Docker-ID
+  aus `list_live_containers`), die `container_action`-Nutzlast `{"action":"Start|Stop|Restart|Remove"}`,
+  welche Abfragen `null` liefern (`get_device`, `get_container`, `get_device_command_task`) und
+  welche einen 404-Fehler, das Fehlerformat `Fusion.API answered {status} {code}: {message}`,
+  `list_containers` als Sollzustand gegen `list_live_containers` als Istzustand mit `success`/`error`,
+  `get_device_performance` als Fenster von bis zu 31 Tagen mit Bucketing statt „der letzten 48
+  Stunden", `query_device` für die parameterlosen Agent-Fragen und die Diagnosefelder
+  `lastSeenUtc`/`status`; das `null` in `totalMessagesReady` hängt jetzt an erweiterten
+  Plattformrechten, nicht mehr an der stillgelegten Admin-Rolle. Neuer Abschnitt „Übernahme aus dem
+  Discovery-Pool": `list_discovered_devices`-Zeilen tragen `hasEnrolment`, `adopt_discovered_device`
+  antwortet mit `cmdAuthKeyEnrolment: pending`, das innerhalb von Sekunden zu `enrolled` oder
+  `probe-failed` wird (mit `get_device` erneut lesen); `none` heisst, es läuft keine Probe, und die
+  QR-Registrierung bleibt der Weg zum Befehlsschlüssel. `fusion-fleet-report` zählt Geräte ohne
+  Befehlsschlüssel (`hasCmdAuthKey`, `cmdAuthKeyEnrolment`) und nennt `hasEnrolment` an
+  Pool-Zeilen; `/fusion-status` zeigt den Schlüsselzustand. `fusion-docs` verweist auf
+  `docs/fusion.md` und `Fusion.API/docs/AI_CHAT.md`, streicht die Token-Formulierung aus der
+  OAuth-Zeile und markiert `Fusion.McpServer/docs/ARCHITECTURE.md` nicht mehr als ausstehend. README
+  (en + de) nennt 0.3.4 statt eines veralteten 0.3.2.
+
 ### Hinzugefügt
 
 - `hermos-fusion` 0.3.3: Die Skills kennen die Tagesübersicht der Fusion-Benachrichtigungsregeln
@@ -40,7 +64,7 @@ gitGraph
   `list_discovered_devices` (unregistrierte Geräte, die aktuell einen gültigen `openMetaData`-Feed
   senden, mandantenunabhängig) und `adopt_discovered_device` (übernimmt eines in den Mandanten der
   aufrufenden Person, optional in eine Org-Unit; ein anderswo bereits registriertes Gerät liefert
-  `409`). Kommt mit dem nächsten `Fusion.McpServer`-Deploy.
+  `409 DeviceIdExists`).
 
 ### Geplant
 

@@ -9,11 +9,14 @@ Status für: $ARGUMENTS
    `list_devices` auflösen; bei mehreren Treffern zur Auswahl stellen. Kein
    Treffer in `list_devices` → `list_discovered_devices` prüfen; eine Übernahme
    läuft über den Skill `fusion-device-triage`.
-2. `get_device` für die Stammdaten, `get_device_diagnostics` für die Lage.
+2. `get_device` für die Stammdaten (`null` = unbekannt oder nicht sichtbar, als
+   „nicht gefunden" melden), `get_device_diagnostics` für die Lage.
 3. Kompakt antworten, höchstens zehn Zeilen:
    - Name, Org-Unit, Ort
    - Online oder nicht, mit `lastSeenAt` in lokaler Zeit
    - Agent-Version, dazu ob ein Update ansteht oder erforderlich ist
+   - Befehlsschlüssel: `hasCmdAuthKey` und `cmdAuthKeyEnrolment`
+     (`none | pending | enrolled | probe-failed`) – ohne Schlüssel nur Telemetrie
    - Auffälligkeiten aus der Diagnose: Queue-Stau, fehlgeschlagene Befehle,
      hängende Transfers
 4. Nichts verändern. Fällt eine Massnahme auf, vorschlagen statt ausführen.

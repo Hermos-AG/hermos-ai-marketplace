@@ -4,12 +4,26 @@
 
 ## Unreleased
 
+`HERMOS-Fusion` 0.3.4: the Fusion MCP server rewrote the descriptions of its tools for AI
+clients, and the skills now say the same thing. The device triage tells the two meanings of
+`containerId` apart, states the `container_action` payload, knows which lookups answer `null`
+and which a 404 error, reads `get_device_performance` as a window of up to 31 days, and
+reports Fusion.API errors with status and code as given. Adopting a device from the discovery
+pool is now its own section: a pool row with `hasEnrolment: true` brings its command key
+along, the adopt answer `cmdAuthKeyEnrolment: pending` turns into `enrolled` or `probe-failed`
+within seconds, and only `none` or `probe-failed` still send you to the QR registration. The
+fleet report counts devices without a command key, `/fusion-status` shows the key state.
+
+`HERMOS-Fusion` 0.3.2: Fusion can deliver alarms by e-mail, Microsoft Teams or webhook, and
+the skills use the new MCP tools for it. The fleet report says whether an alarm actually went
+out, the device triage shows the deliveries for one device, and the docs skill knows the new
+`NOTIFICATIONS.md`. An ad-hoc message is never sent on the AI's own initiative; the skill has
+the wording confirmed first, because real people receive it.
+
 `fusion-device-triage` and `fusion-fleet-report` now know about the discovery pool:
 `list_discovered_devices` lists unregistered devices that are currently sending a valid
-`openMetaData` feed, and `adopt_discovered_device` adopts one into the caller's tenant. A
-device found this way still needs the QR registration (or `update_device` with
-`cmdAuthKey`) before it has a command key — telemetry works right away. No plugin version
-bump for this change.
+`openMetaData` feed, and `adopt_discovered_device` adopts one into the caller's tenant.
+Telemetry works right away; the command key follows as described above.
 
 ## 1.6.2 — 26 August 2026
 
